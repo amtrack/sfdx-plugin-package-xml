@@ -1,0 +1,392 @@
+{
+  "fullName": "Account",
+  "actionOverrides": [
+    {
+      "actionName": "CallHighlightAction",
+      "type": "Default"
+    },
+    {
+      "actionName": "CallHighlightAction",
+      "formFactor": "Large",
+      "type": "Default"
+    },
+    {
+      "actionName": "CallHighlightAction",
+      "formFactor": "Small",
+      "type": "Default"
+    },
+    {
+      "actionName": "CancelEdit",
+      "type": "Default"
+    },
+    {
+      "actionName": "CancelEdit",
+      "formFactor": "Large",
+      "type": "Default"
+    },
+    {
+      "actionName": "CancelEdit",
+      "formFactor": "Small",
+      "type": "Default"
+    },
+    {
+      "actionName": "Delete",
+      "type": "Default"
+    },
+    {
+      "actionName": "Delete",
+      "formFactor": "Large",
+      "type": "Default"
+    },
+    {
+      "actionName": "Delete",
+      "formFactor": "Small",
+      "type": "Default"
+    },
+    {
+      "actionName": "Edit",
+      "type": "Default"
+    },
+    {
+      "actionName": "Edit",
+      "formFactor": "Large",
+      "type": "Default"
+    },
+    {
+      "actionName": "Edit",
+      "formFactor": "Small",
+      "type": "Default"
+    },
+    {
+      "actionName": "EmailHighlightAction",
+      "type": "Default"
+    },
+    {
+      "actionName": "EmailHighlightAction",
+      "formFactor": "Large",
+      "type": "Default"
+    },
+    {
+      "actionName": "EmailHighlightAction",
+      "formFactor": "Small",
+      "type": "Default"
+    },
+    {
+      "actionName": "EnableCustomerPortalUser",
+      "type": "Default"
+    },
+    {
+      "actionName": "EnableCustomerPortalUser",
+      "formFactor": "Large",
+      "type": "Default"
+    },
+    {
+      "actionName": "EnableCustomerPortalUser",
+      "formFactor": "Small",
+      "type": "Default"
+    },
+    {
+      "actionName": "List",
+      "type": "Default"
+    },
+    {
+      "actionName": "List",
+      "formFactor": "Large",
+      "type": "Default"
+    },
+    {
+      "actionName": "List",
+      "formFactor": "Small",
+      "type": "Default"
+    },
+    {
+      "actionName": "ListClean",
+      "type": "Default"
+    },
+    {
+      "actionName": "ListClean",
+      "formFactor": "Large",
+      "type": "Default"
+    },
+    {
+      "actionName": "ListClean",
+      "formFactor": "Small",
+      "type": "Default"
+    },
+    {
+      "actionName": "New",
+      "type": "Default"
+    },
+    {
+      "actionName": "New",
+      "formFactor": "Large",
+      "type": "Default"
+    },
+    {
+      "actionName": "New",
+      "formFactor": "Small",
+      "type": "Default"
+    },
+    {
+      "actionName": "RequestUpdate",
+      "type": "Default"
+    },
+    {
+      "actionName": "RequestUpdate",
+      "formFactor": "Large",
+      "type": "Default"
+    },
+    {
+      "actionName": "RequestUpdate",
+      "formFactor": "Small",
+      "type": "Default"
+    },
+    {
+      "actionName": "SaveEdit",
+      "type": "Default"
+    },
+    {
+      "actionName": "SaveEdit",
+      "formFactor": "Large",
+      "type": "Default"
+    },
+    {
+      "actionName": "SaveEdit",
+      "formFactor": "Small",
+      "type": "Default"
+    },
+    {
+      "actionName": "SmsHighlightAction",
+      "type": "Default"
+    },
+    {
+      "actionName": "SmsHighlightAction",
+      "formFactor": "Large",
+      "type": "Default"
+    },
+    {
+      "actionName": "SmsHighlightAction",
+      "formFactor": "Small",
+      "type": "Default"
+    },
+    {
+      "actionName": "Tab",
+      "type": "Default"
+    },
+    {
+      "actionName": "Tab",
+      "formFactor": "Large",
+      "type": "Default"
+    },
+    {
+      "actionName": "Tab",
+      "formFactor": "Small",
+      "type": "Default"
+    },
+    {
+      "actionName": "View",
+      "type": "Default"
+    },
+    {
+      "actionName": "View",
+      "formFactor": "Large",
+      "type": "Default"
+    },
+    {
+      "actionName": "View",
+      "formFactor": "Small",
+      "type": "Default"
+    },
+    {
+      "actionName": "ViewCustomerPortalUser",
+      "type": "Default"
+    },
+    {
+      "actionName": "ViewCustomerPortalUser",
+      "formFactor": "Large",
+      "type": "Default"
+    },
+    {
+      "actionName": "ViewCustomerPortalUser",
+      "formFactor": "Small",
+      "type": "Default"
+    },
+    {
+      "actionName": "WebsiteHighlightAction",
+      "type": "Default"
+    },
+    {
+      "actionName": "WebsiteHighlightAction",
+      "formFactor": "Large",
+      "type": "Default"
+    },
+    {
+      "actionName": "WebsiteHighlightAction",
+      "formFactor": "Small",
+      "type": "Default"
+    }
+  ],
+  "compactLayoutAssignment": "SYSTEM",
+  "enableFeeds": "true",
+  "enableHistory": "false",
+  "externalSharingModel": "Private",
+  "fields": [
+    {
+      "fullName": "AccountNumber",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "AccountSource",
+      "trackFeedHistory": "false",
+      "type": "Picklist"
+    },
+    {
+      "fullName": "AnnualRevenue",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "BillingAddress",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "CleanStatus",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "DandbCompanyId",
+      "trackFeedHistory": "false",
+      "type": "Lookup"
+    },
+    {
+      "fullName": "Description",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "DunsNumber",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "Fax",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "Industry",
+      "trackFeedHistory": "false",
+      "type": "Picklist"
+    },
+    {
+      "fullName": "Jigsaw",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "NaicsCode",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "NaicsDesc",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "Name",
+      "trackFeedHistory": "true"
+    },
+    {
+      "fullName": "NumberOfEmployees",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "OperatingHoursId",
+      "trackFeedHistory": "false",
+      "type": "Lookup"
+    },
+    {
+      "fullName": "OwnerId",
+      "trackFeedHistory": "true",
+      "type": "Lookup"
+    },
+    {
+      "fullName": "Ownership",
+      "trackFeedHistory": "false",
+      "type": "Picklist"
+    },
+    {
+      "fullName": "ParentId",
+      "trackFeedHistory": "false",
+      "type": "Hierarchy"
+    },
+    {
+      "fullName": "Phone",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "Rating",
+      "trackFeedHistory": "false",
+      "type": "Picklist"
+    },
+    {
+      "fullName": "ShippingAddress",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "Sic",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "SicDesc",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "Site",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "TickerSymbol",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "Tradestyle",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "Type",
+      "trackFeedHistory": "false",
+      "type": "Picklist"
+    },
+    {
+      "fullName": "Website",
+      "trackFeedHistory": "false"
+    },
+    {
+      "fullName": "YearStarted",
+      "trackFeedHistory": "false"
+    }
+  ],
+  "label": "Account",
+  "searchLayouts": {
+    "customTabListAdditionalFields": [
+      "ACCOUNT.NAME",
+      "ACCOUNT.ADDRESS1_CITY",
+      "ACCOUNT.PHONE1"
+    ],
+    "lookupDialogsAdditionalFields": [
+      "ACCOUNT.NAME",
+      "ACCOUNT.SITE",
+      "CORE.USERS.ALIAS",
+      "ACCOUNT.TYPE"
+    ],
+    "lookupPhoneDialogsAdditionalFields": [
+      "ACCOUNT.NAME",
+      "ACCOUNT.SITE",
+      "CORE.USERS.ALIAS",
+      "ACCOUNT.TYPE",
+      "ACCOUNT.PHONE1"
+    ],
+    "searchResultsAdditionalFields": [
+      "ACCOUNT.NAME",
+      "ACCOUNT.SITE",
+      "ACCOUNT.PHONE1",
+      "CORE.USERS.ALIAS"
+    ]
+  },
+  "sharingModel": "ReadWrite"
+}

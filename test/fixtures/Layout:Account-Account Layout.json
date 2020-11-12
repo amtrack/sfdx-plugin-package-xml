@@ -1,0 +1,296 @@
+{
+  "fullName": "Account-Account Layout",
+  "emailDefault": "false",
+  "headers": [
+    "PersonalTagging",
+    "PublicTagging"
+  ],
+  "layoutSections": [
+    {
+      "customLabel": "false",
+      "detailHeading": "false",
+      "editHeading": "true",
+      "label": "Account Information",
+      "layoutColumns": [
+        {
+          "layoutItems": [
+            {
+              "behavior": "Edit",
+              "field": "OwnerId"
+            },
+            {
+              "behavior": "Required",
+              "field": "Name"
+            },
+            {
+              "behavior": "Edit",
+              "field": "ParentId"
+            },
+            {
+              "behavior": "Edit",
+              "field": "AccountNumber"
+            },
+            {
+              "behavior": "Edit",
+              "field": "Site"
+            },
+            {
+              "behavior": "Edit",
+              "field": "Type"
+            },
+            {
+              "behavior": "Edit",
+              "field": "Industry"
+            },
+            {
+              "behavior": "Edit",
+              "field": "AnnualRevenue"
+            }
+          ]
+        },
+        {
+          "layoutItems": [
+            {
+              "behavior": "Edit",
+              "field": "Rating"
+            },
+            {
+              "behavior": "Edit",
+              "field": "Phone"
+            },
+            {
+              "behavior": "Edit",
+              "field": "Fax"
+            },
+            {
+              "behavior": "Edit",
+              "field": "Website"
+            },
+            {
+              "behavior": "Edit",
+              "field": "TickerSymbol"
+            },
+            {
+              "behavior": "Edit",
+              "field": "Ownership"
+            },
+            {
+              "behavior": "Edit",
+              "field": "NumberOfEmployees"
+            },
+            {
+              "behavior": "Edit",
+              "field": "Sic"
+            }
+          ]
+        }
+      ],
+      "style": "TwoColumnsTopToBottom"
+    },
+    {
+      "customLabel": "false",
+      "detailHeading": "false",
+      "editHeading": "true",
+      "label": "Address Information",
+      "layoutColumns": [
+        {
+          "layoutItems": {
+            "behavior": "Edit",
+            "field": "BillingAddress"
+          }
+        },
+        {
+          "layoutItems": {
+            "behavior": "Edit",
+            "field": "ShippingAddress"
+          }
+        }
+      ],
+      "style": "TwoColumnsTopToBottom"
+    },
+    {
+      "customLabel": "false",
+      "detailHeading": "false",
+      "editHeading": "true",
+      "label": "Additional Information",
+      "layoutColumns": [
+        "",
+        ""
+      ],
+      "style": "TwoColumnsLeftToRight"
+    },
+    {
+      "customLabel": "false",
+      "detailHeading": "false",
+      "editHeading": "true",
+      "label": "System Information",
+      "layoutColumns": [
+        {
+          "layoutItems": {
+            "behavior": "Readonly",
+            "field": "CreatedById"
+          }
+        },
+        {
+          "layoutItems": {
+            "behavior": "Readonly",
+            "field": "LastModifiedById"
+          }
+        }
+      ],
+      "style": "TwoColumnsTopToBottom"
+    },
+    {
+      "customLabel": "false",
+      "detailHeading": "false",
+      "editHeading": "true",
+      "label": "Description Information",
+      "layoutColumns": {
+        "layoutItems": {
+          "behavior": "Edit",
+          "field": "Description"
+        }
+      },
+      "style": "OneColumn"
+    },
+    {
+      "customLabel": "false",
+      "detailHeading": "false",
+      "editHeading": "false",
+      "layoutColumns": [
+        "",
+        "",
+        ""
+      ],
+      "style": "CustomLinks"
+    }
+  ],
+  "quickActionList": {
+    "quickActionListItems": [
+      {
+        "quickActionName": "FeedItem.TextPost"
+      },
+      {
+        "quickActionName": "FeedItem.ContentPost"
+      },
+      {
+        "quickActionName": "NewTask"
+      },
+      {
+        "quickActionName": "NewContact"
+      },
+      {
+        "quickActionName": "NewCase"
+      },
+      {
+        "quickActionName": "LogACall"
+      },
+      {
+        "quickActionName": "NewNote"
+      },
+      {
+        "quickActionName": "NewOpportunity"
+      },
+      {
+        "quickActionName": "NewEvent"
+      },
+      {
+        "quickActionName": "FeedItem.RypplePost"
+      },
+      {
+        "quickActionName": "FeedItem.LinkPost"
+      },
+      {
+        "quickActionName": "FeedItem.PollPost"
+      },
+      {
+        "quickActionName": "FeedItem.QuestionPost"
+      },
+      {
+        "quickActionName": "SendEmail"
+      }
+    ]
+  },
+  "relatedContent": {
+    "relatedContentItems": {
+      "layoutItem": {
+        "component": "runtime_sales_social:socialPanel"
+      }
+    }
+  },
+  "relatedLists": [
+    {
+      "fields": [
+        "FULL_NAME",
+        "CONTACT.TITLE",
+        "CONTACT.EMAIL",
+        "CONTACT.PHONE1"
+      ],
+      "relatedList": "RelatedContactList"
+    },
+    {
+      "fields": [
+        "OPPORTUNITY.NAME",
+        "OPPORTUNITY.STAGE_NAME",
+        "OPPORTUNITY.AMOUNT",
+        "OPPORTUNITY.CLOSE_DATE"
+      ],
+      "relatedList": "RelatedOpportunityList"
+    },
+    {
+      "fields": [
+        "CASES.CASE_NUMBER",
+        "NAME",
+        "CASES.SUBJECT",
+        "CASES.PRIORITY",
+        "CASES.CREATED_DATE_DATE_ONLY",
+        "CASES.STATUS",
+        "OWNER_NAME"
+      ],
+      "relatedList": "RelatedCaseList"
+    },
+    {
+      "fields": [
+        "TASK.SUBJECT",
+        "TASK.WHO_NAME",
+        "TASK.WHAT_NAME",
+        "ACTIVITY.TASK",
+        "TASK.DUE_DATE",
+        "TASK.STATUS",
+        "TASK.PRIORITY",
+        "CORE.USERS.FULL_NAME"
+      ],
+      "relatedList": "RelatedActivityList"
+    },
+    {
+      "fields": [
+        "TASK.SUBJECT",
+        "TASK.WHO_NAME",
+        "TASK.WHAT_NAME",
+        "ACTIVITY.TASK",
+        "TASK.DUE_DATE",
+        "CORE.USERS.FULL_NAME",
+        "TASK.LAST_UPDATE"
+      ],
+      "relatedList": "RelatedHistoryList"
+    },
+    {
+      "relatedList": "RelatedNoteList"
+    },
+    {
+      "fields": [
+        "ACCOUNT.NAME",
+        "OPPORTUNITY.NAME",
+        "PARTNER.ROLE"
+      ],
+      "relatedList": "RelatedPartnerList"
+    }
+  ],
+  "relatedObjects": "ParentId",
+  "runAssignmentRulesDefault": "false",
+  "showEmailCheckbox": "true",
+  "showHighlightsPanel": "false",
+  "showInteractionLogPanel": "false",
+  "showRunAssignmentRulesCheckbox": "true",
+  "showSubmitAndAttachButton": "false"
+}
