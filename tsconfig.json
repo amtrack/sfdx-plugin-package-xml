@@ -1,0 +1,11 @@
+{
+  "extends": "./node_modules/@salesforce/dev-config/tsconfig",
+  "compilerOptions": {
+    "declaration": true,
+    "rootDir": "./src",
+    "outDir": "./lib",
+    "importHelpers": true,
+    "resolveJsonModule": true
+  },
+  "include": ["./src/**/*"]
+}

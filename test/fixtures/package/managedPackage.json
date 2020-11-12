@@ -1,0 +1,20 @@
+{
+  "components": [
+    {
+      "type": "CustomObject",
+      "fullName": "Foo"
+    },
+    {
+      "type": "CustomObject",
+      "fullName": "Bar"
+    }
+  ],
+  "meta": {
+    "version": "50.0",
+    "apiAccessLevel": "Unrestricted",
+    "description": "Managed Package description.",
+    "fullName": "XXX",
+    "namespacePrefix": "YYY",
+    "postInstallClass": "PostInstall"
+  }
+}

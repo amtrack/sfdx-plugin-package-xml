@@ -1,0 +1,9 @@
+{
+  "components": [
+    {
+      "type": "CustomObject",
+      "fullName": "Foo"
+    }
+  ],
+  "meta": {}
+}

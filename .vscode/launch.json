@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "address": "localhost",
+      "name": "Attach to Remote",
+      "port": 9229,
+      "localRoot": "${workspaceFolder}",
+      "remoteRoot": "${workspaceFolder}",
+      "request": "attach",
+      "skipFiles": ["<node_internals>/**", "${workspaceFolder}/bin/run"],
+      "type": "node"
+    }
+  ]
+}

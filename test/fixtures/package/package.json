@@ -1,0 +1,27 @@
+{
+  "components": [
+    {
+      "type": "CustomObject",
+      "fullName": "Contact"
+    },
+    {
+      "type": "CustomObject",
+      "fullName": "Account"
+    },
+    {
+      "type": "Layout",
+      "fullName": "Account-Account Layout"
+    },
+    {
+      "type": "Settings",
+      "fullName": "Mobile"
+    },
+    {
+      "type": "Translations",
+      "fullName": "de"
+    }
+  ],
+  "meta": {
+    "version": "50.0"
+  }
+}
