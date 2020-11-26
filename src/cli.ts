@@ -8,7 +8,7 @@ export async function getMetadataComponentsFromStdinOrString(
 ): Promise<Array<MetadataComponent>> {
   let rawComponentNames = [];
   if (commaSeparatedMetadataComponentNames === '-') {
-    rawComponentNames = await getStdin().split('\n');
+    rawComponentNames = (await getStdin()).split('\n');
   } else {
     rawComponentNames = commaSeparatedMetadataComponentNames.split(',');
   }

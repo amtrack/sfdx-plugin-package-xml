@@ -28,7 +28,8 @@ export default class PackageXmlCreateCommand extends SfdxCommand {
   protected static flagsConfig = {
     metadata: flags.string({
       char: 'm',
-      description: 'comma-separated list of metadata component names'
+      description: 'comma-separated list of metadata component names',
+      required: true
     }),
     resultfile: flags.filepath({
       char: 'f',
