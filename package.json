@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@mdapi-issues/listmetadata-recordtype-personaccount": "1.0.0",
-    "@mdapi-issues/listmetadata-standardvalueset": "1.0.0",
+    "@mdapi-issues/listmetadata-standardvalueset": "1.0.1",
     "@mdapi-issues/listmetadata-standardvaluesettranslation-type": "1.0.0",
     "@oclif/command": "1.8.0",
     "@oclif/config": "1.17.0",

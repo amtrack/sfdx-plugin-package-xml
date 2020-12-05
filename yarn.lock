@@ -228,10 +228,10 @@
     "@salesforce/core" "^2.15.2"
     tslib "2.0.3"
 
-"@mdapi-issues/listmetadata-standardvalueset@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-standardvalueset/-/listmetadata-standardvalueset-1.0.0.tgz#a8f30545a11d5cf98305e7af1ec97562bfc6e211"
-  integrity sha512-huWWhVki7ChnkGjZ4M5/GZEeuMLkcYih1x3eYBcrZjWWpBXL6o7KpFn4qiq3UFn2uBkw7BldC/LMs5qH0HtEVA==
+"@mdapi-issues/listmetadata-standardvalueset@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-standardvalueset/-/listmetadata-standardvalueset-1.0.1.tgz#4b1c2c6d71ea7e0574a5c926729b20c253db34b7"
+  integrity sha512-n1WA0Do8rrAfaY7nQcB+HpV7YD9CREWct5FL1iVZUQOlg28Lfx81yncBWL+I60hdM+uhcADCvXEVKHTMbNe+jg==
   dependencies:
     "@salesforce/core" "2.15.2"
     tslib "2.0.3"
