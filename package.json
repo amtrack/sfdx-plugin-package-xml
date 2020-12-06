@@ -33,7 +33,7 @@
     "@typescript-eslint/parser": "4.9.0",
     "chai": "4.2.0",
     "eslint": "7.15.0",
-    "eslint-config-prettier": "6.15.0",
+    "eslint-config-prettier": "7.0.0",
     "mocha": "8.2.1",
     "nyc": "15.1.0",
     "prettier": "2.2.1",
