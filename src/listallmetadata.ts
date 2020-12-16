@@ -1,7 +1,7 @@
 import { OutputFlags } from '@oclif/parser';
 import { Connection } from '@salesforce/core';
 import { FileProperties } from 'jsforce';
-import { ignoreMatching } from './ignore';
+import { match } from './match';
 import { toMetadataComponentName } from './metadata-component';
 import ChildMetadataLister from './metadata-lister/children';
 import FolderBasedMetadataLister from './metadata-lister/folderbased';
@@ -10,7 +10,9 @@ import StandardValueSetMetadataLister from './metadata-lister/standardvaluesets'
 
 export async function listAllMetadata(
   conn: Connection,
-  flags: OutputFlags<any>
+  flags: OutputFlags<any>,
+  allowPatterns?: Array<string>,
+  ignorePatterns?: Array<string>
 ): Promise<Array<FileProperties>> {
   const describeMetadataResult = await conn.metadata.describe();
   const metadataListers = [
@@ -19,28 +21,27 @@ export async function listAllMetadata(
     StandardValueSetMetadataLister,
     ChildMetadataLister
   ];
-  // TODO: filter describeMetadataResult using ignorePatterns
   const result = [];
   for (const MetadataListerImplementation of metadataListers) {
     const listerId = MetadataListerImplementation.id;
-    const instance = new MetadataListerImplementation();
+    const instance = new MetadataListerImplementation(
+      allowPatterns,
+      ignorePatterns
+    );
     if (flags[listerId]) {
       const fileProperties = await instance.run(
         conn,
         describeMetadataResult,
         result
       );
-      const [keep, ignored] = ignoreMatching(
+      // postfilter
+      const [matches] = match(
         fileProperties,
-        flags.ignore ? flags.ignore : [],
-        toMetadataComponentName
+        allowPatterns,
+        toMetadataComponentName,
+        { ignore: ignorePatterns }
       );
-      if (ignored.length) {
-        console.error(
-          `ignored: ${JSON.stringify(ignored.map(toMetadataComponentName))}`
-        );
-      }
-      result.push(...keep);
+      result.push(...matches);
     }
   }
   return result;

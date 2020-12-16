@@ -11,6 +11,12 @@ export default class StandardValueSetLister extends MetadataLister {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     fileProperties: Array<FileProperties>
   ): Promise<Array<FileProperties>> {
-    return await listStandardValueSets(conn);
+    const shouldRun =
+      this.filter(['StandardValueSet'], (x) => `${x}:`).length > 0;
+    if (shouldRun) {
+      return await listStandardValueSets(conn);
+    } else {
+      return [];
+    }
   }
 }

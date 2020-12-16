@@ -1,6 +1,11 @@
 import { flags, SfdxCommand } from '@salesforce/command';
 import { promises as fs } from 'fs';
+import {
+  parseCommaSeparatedValues,
+  parseNewLineSeparatedValues
+} from '../../../cli';
 import { listAllMetadata } from '../../../listallmetadata';
+import getStdin = require('get-stdin');
 
 export default class MdapiListAllMetadataCommand extends SfdxCommand {
   public static description = `list all metadata components
@@ -67,10 +72,15 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
     children: flags.boolean({
       description: `list metadata components of child types (e.g. 'CustomField' children of 'CustomObject')`
     }),
+    metadata: flags.string({
+      char: 'm',
+      description: `comma-separated list of metadata component name expressions to list
+      Example: 'CustomObject:*,CustomField:Account.*'`
+    }),
     ignore: flags.string({
-      description: `ignore metadata components matching the pattern in the format of <type>:<fullName>
-      Examples: 'InstalledPackage:*', 'Profile:*', 'Report:unfiled$public/*', 'CustomField:Account.*'`,
-      multiple: true
+      char: 'i',
+      description: `comma-separated list of metadata component name expressions to ignore
+      Example: 'InstalledPackage:*,Profile:*,Report:unfiled$public/*,CustomField:Account.*'`
     }),
     names: flags.boolean({
       description: `output only component names (e.g. 'CustomObject:Account',...)`
@@ -79,7 +89,18 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
 
   public async run(): Promise<any> {
     const conn = this.org.getConnection();
-    const fileProperties = await listAllMetadata(conn, this.flags);
+    let allowPatterns =
+      this.flags.metadata === '-'
+        ? parseNewLineSeparatedValues(await getStdin())
+        : parseCommaSeparatedValues(this.flags.metadata);
+    allowPatterns = allowPatterns.length ? allowPatterns : ['**/*'];
+    const ignorePatterns = parseCommaSeparatedValues(this.flags.ignore);
+    const fileProperties = await listAllMetadata(
+      conn,
+      this.flags,
+      allowPatterns,
+      ignorePatterns
+    );
     if (this.flags.resultfile) {
       const fileData: string = JSON.stringify(fileProperties, null, 4);
       await fs.writeFile(this.flags.resultfile, fileData);
