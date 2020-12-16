@@ -1,7 +1,7 @@
 import { Org } from '@salesforce/core';
 import { expect } from 'chai';
 import { toMetadataComponentName } from '../src/metadata-component';
-import { listFolderBasedMetadata } from '../src/metadata-lister/folderbased';
+import FolderBasedMetadata from '../src/metadata-lister/folderbased';
 
 const expected = [
   'EmailFolder:unfiled$public',
@@ -21,7 +21,8 @@ describe('folderbased', function () {
     it('lists folders and files in folders', async () => {
       const org = await Org.create({});
       const conn = org.getConnection();
-      const result = await listFolderBasedMetadata(conn);
+      const lister = new FolderBasedMetadata(['**/*'], []);
+      const result = await lister.run(conn, null, []);
       expect(result.map(toMetadataComponentName).sort()).to.deep.equal(
         expected
       );

@@ -18,29 +18,31 @@ export default class FolderBasedMetadata extends MetadataLister {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     fileProperties: Array<FileProperties>
   ): Promise<Array<FileProperties>> {
-    return await listFolderBasedMetadata(conn);
+    const folderTypes = Object.keys(FOLDER_BASED_METADATA_MAP);
+    const folderQueries = folderTypes.map((folderType) => {
+      return {
+        type: folderType
+      };
+    });
+    const filteredFolderQueries = this.filter(
+      folderQueries,
+      (x) => `${x.type}:`
+    );
+    const folders = await listMetadataInChunks(conn, filteredFolderQueries);
+    const inFolderQueries = folders.map((folder) => {
+      return {
+        type: FOLDER_BASED_METADATA_MAP[folder.type],
+        folder: folder.fullName
+      };
+    });
+    const filteredInFolderQueries = this.filter(
+      inFolderQueries,
+      (x) => `${x.type}:${x.folder}`
+    );
+    const inFolderFileProperties = await listMetadataInChunks(
+      conn,
+      filteredInFolderQueries
+    );
+    return [...folders, ...inFolderFileProperties];
   }
-}
-
-export async function listFolderBasedMetadata(
-  conn: Connection
-): Promise<Array<FileProperties>> {
-  const folderTypes = Object.keys(FOLDER_BASED_METADATA_MAP);
-  const folderQueries = folderTypes.map((folderType) => {
-    return {
-      type: folderType
-    };
-  });
-  const folders = await listMetadataInChunks(conn, folderQueries);
-  const inFolderQueries = folders.map((folder) => {
-    return {
-      type: FOLDER_BASED_METADATA_MAP[folder.type],
-      folder: folder.fullName
-    };
-  });
-  const inFolderFileProperties = await listMetadataInChunks(
-    conn,
-    inFolderQueries
-  );
-  return [...folders, ...inFolderFileProperties];
 }

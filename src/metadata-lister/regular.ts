@@ -12,15 +12,18 @@ export default class RegularMetadata extends MetadataLister {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     fileProperties: Array<FileProperties>
   ): Promise<Array<FileProperties>> {
-    const metadataTypes = describeMetadataResult.metadataObjects.map(
-      (metadataType) => metadataType.xmlName
+    const metadataQueries = describeMetadataResult.metadataObjects.map(
+      (cmp) => {
+        return {
+          type: cmp.xmlName
+        };
+      }
     );
-    const metadataQueries = metadataTypes.map((metadataType) => {
-      return {
-        type: metadataType
-      };
-    });
-    let result = await listMetadataInChunks(conn, metadataQueries);
+    const filteredMetadataQueries = this.filter(
+      metadataQueries,
+      (x) => `${x.type}:`
+    );
+    let result = await listMetadataInChunks(conn, filteredMetadataQueries);
     result = fixNilType(result, describeMetadataResult);
     result = fixCustomFeedFilter(result);
     return result;

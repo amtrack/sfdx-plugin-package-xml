@@ -1,7 +1,12 @@
 import { flags, SfdxCommand } from '@salesforce/command';
 import { promises as fs } from 'fs';
-import { getMetadataComponentsFromStdinOrString } from '../../cli';
+import {
+  parseCommaSeparatedValues,
+  parseNewLineSeparatedValues
+} from '../../cli';
+import { parseMetadataComponentName } from '../../metadata-component';
 import PackageXml from '../../package-xml';
+import getStdin = require('get-stdin');
 
 export default class PackageXmlCreateCommand extends SfdxCommand {
   public static description = `create a package.xml manifest`;
@@ -43,10 +48,14 @@ export default class PackageXmlCreateCommand extends SfdxCommand {
     if (this.flags.apiversion) {
       meta['version'] = this.flags.apiversion;
     }
-    const metadataComponents = await getMetadataComponentsFromStdinOrString(
-      this.flags.metadata
-    );
-    const packageXml = new PackageXml(metadataComponents, meta).toString();
+    const metadataComponentNames =
+      this.flags.metadata === '-'
+        ? parseNewLineSeparatedValues(await getStdin())
+        : parseCommaSeparatedValues(this.flags.metadata);
+    const packageXml = new PackageXml(
+      metadataComponentNames.map(parseMetadataComponentName),
+      meta
+    ).toString();
     if (this.flags.resultfile) {
       await fs.writeFile(this.flags.resultfile, packageXml);
     } else {

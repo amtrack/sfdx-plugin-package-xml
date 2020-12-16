@@ -1,6 +1,7 @@
 import { flags, SfdxCommand } from '@salesforce/command';
 import { promises as fs } from 'fs';
-import { ignoreMatching } from '../../ignore';
+import { parseCommaSeparatedValues } from '../../cli';
+import { match } from '../../match';
 import { toMetadataComponentName } from '../../metadata-component';
 import PackageXml from '../../package-xml';
 
@@ -53,9 +54,9 @@ export default class PackageXmlGenerateCommand extends SfdxCommand {
       description: 'path to the generated package.xml file'
     }),
     ignore: flags.string({
-      description: `ignore metadata components matching the pattern in the format of <type>:<fullName>
-        Example: --ignore "Profile:*" --ignore "Report:unfiled$public/*" --ignore "CustomField:Account.*"`,
-      multiple: true
+      char: 'i',
+      description: `comma-separated list of metadata component name expressions to ignore
+      Example: 'InstalledPackage:*,Profile:*,Report:unfiled$public/*,CustomField:Account.*'`
     }),
     // ignorefile: flags.filepath({
     //   description: `same as --ignore, just one ignore pattern per line in a file`
@@ -83,12 +84,12 @@ export default class PackageXmlGenerateCommand extends SfdxCommand {
     }
     const ignorePatterns = [];
     if (this.flags.ignore) {
-      ignorePatterns.push(...this.flags.ignore);
+      ignorePatterns.push(...parseCommaSeparatedValues(this.flags.ignore));
     }
     if (this.flags.defaultignore) {
       ignorePatterns.push(...this.flags.defaultignore);
     }
-    const [keep] = ignoreMatching(
+    const [, keep] = match(
       fileProperties,
       ignorePatterns,
       toMetadataComponentName

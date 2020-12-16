@@ -1,19 +1,20 @@
-import getStdin = require('get-stdin');
-import MetadataComponent, {
-  parseMetadataComponentName
-} from './metadata-component';
-
-export async function getMetadataComponentsFromStdinOrString(
+export function parseCommaSeparatedValues(
   commaSeparatedMetadataComponentNames: string
-): Promise<Array<MetadataComponent>> {
-  let rawComponentNames = [];
-  if (commaSeparatedMetadataComponentNames === '-') {
-    rawComponentNames = (await getStdin()).split('\n');
-  } else {
-    rawComponentNames = commaSeparatedMetadataComponentNames.split(',');
+): Array<string> {
+  if (!commaSeparatedMetadataComponentNames) {
+    return [];
   }
-  return rawComponentNames
-    .map((x) => x.trim())
-    .filter(Boolean)
-    .map(parseMetadataComponentName);
+  return clean(commaSeparatedMetadataComponentNames.split(','));
+}
+export function parseNewLineSeparatedValues(
+  newLineSeparatedValues: string
+): Array<string> {
+  if (!newLineSeparatedValues) {
+    return [];
+  }
+  return clean(newLineSeparatedValues.split(/\r?\n/));
+}
+
+function clean(values: Array<string>) {
+  return values.map((x) => x.trim()).filter(Boolean);
 }
