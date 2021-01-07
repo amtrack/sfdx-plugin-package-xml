@@ -1,3 +1,4 @@
+import addMissingNamespace from '@mdapi-issues/listmetadata-installed-missing-namespaceprefix/lib/workaround';
 import { fixNilType } from '@mdapi-issues/listmetadata-standardvaluesettranslation-type/lib/workaround';
 import { Connection, DescribeMetadataResult, FileProperties } from 'jsforce';
 import { listMetadataInChunks } from '../jsforce-utils';
@@ -25,6 +26,7 @@ export default class RegularMetadata extends MetadataLister {
     );
     let result = await listMetadataInChunks(conn, filteredMetadataQueries);
     result = fixNilType(result, describeMetadataResult);
+    result = addMissingNamespace(result);
     result = fixCustomFeedFilter(result);
     return result;
   }
