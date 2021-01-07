@@ -65,11 +65,12 @@ General Approach:
 
 Workarounds:
 
-There are a bunch of issues with listMetadata. The following repositories provide Minimum Working Examples and Workarounds we use:
+There are a bunch of issues with `listMetadata`. The following repositories provide Minimum Working Examples and Workarounds we use:
 
 - https://github.com/mdapi-issues/listmetadata-recordtype-personaccount
 - https://github.com/mdapi-issues/listmetadata-standardvalueset
 - https://github.com/mdapi-issues/listmetadata-standardvaluesettranslation-type
+- https://github.com/mdapi-issues/listmetadata-installed-missing-namespaceprefix
 
 ### Package.xml
 
