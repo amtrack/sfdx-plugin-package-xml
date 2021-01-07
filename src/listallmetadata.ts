@@ -1,6 +1,5 @@
 import { OutputFlags } from '@oclif/parser';
-import { Connection } from '@salesforce/core';
-import { FileProperties } from 'jsforce';
+import { Connection, FileProperties } from 'jsforce';
 import { match } from './match';
 import { toMetadataComponentName } from './metadata-component';
 import ChildMetadataLister from './metadata-lister/children';
