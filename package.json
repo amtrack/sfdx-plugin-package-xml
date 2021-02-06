@@ -81,9 +81,6 @@
     ]
   },
   "repository": "amtrack/sfdx-plugin-package-xml",
-  "resolutions": {
-    "antlr4": "4.8.0"
-  },
   "scripts": {
     "build": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "develop": "bash scripts/develop.sh",
