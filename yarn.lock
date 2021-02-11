@@ -228,13 +228,13 @@
     "@salesforce/core" "2.15.4"
     tslib "2.1.0"
 
-"@mdapi-issues/listmetadata-recordtype-personaccount@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-recordtype-personaccount/-/listmetadata-recordtype-personaccount-1.0.0.tgz#041b92bb2a8c023a32073e20c329f5d9c4490694"
-  integrity sha512-x4QK+3PvnPpDY2eiq0LA2nDlcUFTkNsjHvDI/dmIE5qNdRJxoWb3Ak9OvCXwL8/8qqH4sX5qXFHKHnau+PG9Nw==
+"@mdapi-issues/listmetadata-recordtype-personaccount@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-recordtype-personaccount/-/listmetadata-recordtype-personaccount-1.0.1.tgz#3b2bbbfbe01f0914919249e0e814688e6638f5e7"
+  integrity sha512-pjYr8vmnDdvr/r+DMT114qGBjbalM751RVaQV9SHzJHu2l4Z9QJvtDLOnMSR2PnBxv5esS94GbS02eWm2tdAhQ==
   dependencies:
     "@salesforce/core" "^2.15.2"
-    tslib "2.0.3"
+    tslib "2.1.0"
 
 "@mdapi-issues/listmetadata-standardvalueset@1.0.3":
   version "1.0.3"
