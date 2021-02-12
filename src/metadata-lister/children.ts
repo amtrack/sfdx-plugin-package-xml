@@ -2,7 +2,11 @@ import {
   fixPersonAccountRecordTypes,
   queryPersonAccountRecordTypes
 } from '@mdapi-issues/listmetadata-recordtype-personaccount/lib/workaround';
-import { Connection, DescribeMetadataResult, FileProperties } from 'jsforce';
+import type {
+  Connection,
+  DescribeMetadataResult,
+  FileProperties
+} from 'jsforce';
 import { flatten } from 'lodash';
 import { listMetadataInChunks } from '../jsforce-utils';
 import MetadataLister from '../metadata-lister';

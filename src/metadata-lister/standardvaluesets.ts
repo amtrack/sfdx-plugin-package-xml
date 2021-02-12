@@ -1,5 +1,9 @@
 import listStandardValueSets from '@mdapi-issues/listmetadata-standardvalueset/lib/workaround';
-import { Connection, DescribeMetadataResult, FileProperties } from 'jsforce';
+import type {
+  Connection,
+  DescribeMetadataResult,
+  FileProperties
+} from 'jsforce';
 import MetadataLister from '../metadata-lister';
 
 export default class StandardValueSetLister extends MetadataLister {

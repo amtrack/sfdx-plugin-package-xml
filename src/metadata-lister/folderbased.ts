@@ -1,4 +1,8 @@
-import { Connection, DescribeMetadataResult, FileProperties } from 'jsforce';
+import type {
+  Connection,
+  DescribeMetadataResult,
+  FileProperties
+} from 'jsforce';
 import { listMetadataInChunks } from '../jsforce-utils';
 import MetadataLister from '../metadata-lister';
 

@@ -1,6 +1,10 @@
 import addMissingNamespace from '@mdapi-issues/listmetadata-installed-missing-namespaceprefix/lib/workaround';
 import { fixNilType } from '@mdapi-issues/listmetadata-standardvaluesettranslation-type/lib/workaround';
-import { Connection, DescribeMetadataResult, FileProperties } from 'jsforce';
+import type {
+  Connection,
+  DescribeMetadataResult,
+  FileProperties
+} from 'jsforce';
 import { listMetadataInChunks } from '../jsforce-utils';
 import MetadataLister from '../metadata-lister';
 
