@@ -220,13 +220,10 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.2.tgz#26520bf09abe4a5644cd5414e37125a8954241dd"
   integrity sha512-tsAQNx32a8CoFhjhijUIhI4kccIAgmGhy8LZMZgGfmXcpMbPRUqn5LWmgRttILi6yeGmBJd2xsPkFMs0PzgPCw==
 
-"@mdapi-issues/listmetadata-installed-missing-namespaceprefix@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-installed-missing-namespaceprefix/-/listmetadata-installed-missing-namespaceprefix-1.0.1.tgz#083795f2f37e8563508a2cb1e8336d4e66e0a1c9"
-  integrity sha512-Cu2nffJInCJEQ85cOHOxmXLORW1jVu3zKXWpb0T2PS7vWWD5t5UZG8Jlo73ZCoBuA1TBrIQHdQT5EXCLgJoIbA==
-  dependencies:
-    "@salesforce/core" "2.15.4"
-    tslib "2.1.0"
+"@mdapi-issues/listmetadata-installed-missing-namespaceprefix@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-installed-missing-namespaceprefix/-/listmetadata-installed-missing-namespaceprefix-1.0.3.tgz#cf3544c59e2548fe943df042bba5281a627432b0"
+  integrity sha512-7gCHR44roQ5pAii3EOE+dIMu3ilmez5sV8lwatGvR41efPGyssrCngsz9nkGKbTtrXRdjVjz9XVPxaIhIUx4Ag==
 
 "@mdapi-issues/listmetadata-recordtype-personaccount@1.0.2":
   version "1.0.2"
@@ -662,26 +659,6 @@
     graceful-fs "^4.2.4"
     jsen "0.6.6"
     jsforce "1.9.3"
-    jsonwebtoken "8.5.0"
-    mkdirp "1.0.4"
-    sfdx-faye "^1.0.9"
-
-"@salesforce/core@2.15.4":
-  version "2.15.4"
-  resolved "https://registry.yarnpkg.com/@salesforce/core/-/core-2.15.4.tgz#b13ba4ce172ad383dbe7ae5065c9dd429b21f313"
-  integrity sha512-h03QJvXGSaJUwLBp+u/nfuuIjvIyTSSj+Lg+lA7mS/k0zWtsD5mYdYvy2wyBthgyNDgOSeTrD/FIPY53zHCKAw==
-  dependencies:
-    "@salesforce/bunyan" "^2.0.0"
-    "@salesforce/kit" "^1.3.3"
-    "@salesforce/schemas" "^1.0.1"
-    "@salesforce/ts-types" "^1.0.0"
-    "@types/graceful-fs" "^4.1.3"
-    "@types/jsforce" "1.9.23"
-    "@types/mkdirp" "1.0.0"
-    debug "^3.1.0"
-    graceful-fs "^4.2.4"
-    jsen "0.6.6"
-    jsforce "^1.10.0"
     jsonwebtoken "8.5.0"
     mkdirp "1.0.4"
     sfdx-faye "^1.0.9"
