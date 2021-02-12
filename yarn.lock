@@ -243,13 +243,10 @@
   dependencies:
     tslib "2.1.0"
 
-"@mdapi-issues/listmetadata-standardvaluesettranslation-type@1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-standardvaluesettranslation-type/-/listmetadata-standardvaluesettranslation-type-1.0.3.tgz#749d4b659809f9498740b6965254f963a3dd93e1"
-  integrity sha512-J+Oh4g3rTGqLCjKIoMB/DLh96C+4j1N5lFn0TNu7iVeGLXzaOyJJLBAff4e9wAzDWou2pt+oHem6AglBiE1GtQ==
-  dependencies:
-    "@salesforce/core" "2.18.4"
-    tslib "2.1.0"
+"@mdapi-issues/listmetadata-standardvaluesettranslation-type@1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-standardvaluesettranslation-type/-/listmetadata-standardvaluesettranslation-type-1.0.4.tgz#329d59d8e22c22c457ca4891ee7359fb73333cda"
+  integrity sha512-vMb+QmuXPKwiRc18+WuDQOWM3hvTQT4rY46eWy9TqoepeHQWYneANkV0CK7bJRFPeo4rRTlnuXh06aVSaABAKQ==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -674,26 +671,6 @@
   version "2.15.4"
   resolved "https://registry.yarnpkg.com/@salesforce/core/-/core-2.15.4.tgz#b13ba4ce172ad383dbe7ae5065c9dd429b21f313"
   integrity sha512-h03QJvXGSaJUwLBp+u/nfuuIjvIyTSSj+Lg+lA7mS/k0zWtsD5mYdYvy2wyBthgyNDgOSeTrD/FIPY53zHCKAw==
-  dependencies:
-    "@salesforce/bunyan" "^2.0.0"
-    "@salesforce/kit" "^1.3.3"
-    "@salesforce/schemas" "^1.0.1"
-    "@salesforce/ts-types" "^1.0.0"
-    "@types/graceful-fs" "^4.1.3"
-    "@types/jsforce" "1.9.23"
-    "@types/mkdirp" "1.0.0"
-    debug "^3.1.0"
-    graceful-fs "^4.2.4"
-    jsen "0.6.6"
-    jsforce "^1.10.0"
-    jsonwebtoken "8.5.0"
-    mkdirp "1.0.4"
-    sfdx-faye "^1.0.9"
-
-"@salesforce/core@2.18.4":
-  version "2.18.4"
-  resolved "https://registry.yarnpkg.com/@salesforce/core/-/core-2.18.4.tgz#efa99fb8525287e0a34e246a7da673cf3f075e0e"
-  integrity sha512-DSGB8Ur1q31MmPEh7+MMC3oys5wBwFONxVBloImOgkuDAGYtAr9yqrmZ67X52afQaNqJRoFBxFOJDbPZUcw1Hg==
   dependencies:
     "@salesforce/bunyan" "^2.0.0"
     "@salesforce/kit" "^1.3.3"
