@@ -1,4 +1,4 @@
-import { Connection, FileProperties, ListMetadataQuery } from 'jsforce';
+import type { Connection, FileProperties, ListMetadataQuery } from 'jsforce';
 import { chunk } from 'lodash';
 
 /**
