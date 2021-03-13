@@ -227,10 +227,10 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.2.tgz#26520bf09abe4a5644cd5414e37125a8954241dd"
   integrity sha512-tsAQNx32a8CoFhjhijUIhI4kccIAgmGhy8LZMZgGfmXcpMbPRUqn5LWmgRttILi6yeGmBJd2xsPkFMs0PzgPCw==
 
-"@mdapi-issues/listmetadata-installed-missing-namespaceprefix@1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-installed-missing-namespaceprefix/-/listmetadata-installed-missing-namespaceprefix-1.0.3.tgz#cf3544c59e2548fe943df042bba5281a627432b0"
-  integrity sha512-7gCHR44roQ5pAii3EOE+dIMu3ilmez5sV8lwatGvR41efPGyssrCngsz9nkGKbTtrXRdjVjz9XVPxaIhIUx4Ag==
+"@mdapi-issues/listmetadata-installed-missing-namespaceprefix@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-installed-missing-namespaceprefix/-/listmetadata-installed-missing-namespaceprefix-2.0.0.tgz#49707ba7c1189b8067d54d6346f4546a29e7bff4"
+  integrity sha512-dwyERMAjunHT6q2SRQU2FUVMt2fDuOaDK6cDrrQfp8icWChv513lO7vRR+XV6sfcycxxCv50XCyIRSXdh8ULTQ==
 
 "@mdapi-issues/listmetadata-recordtype-personaccount@1.0.2":
   version "1.0.2"
