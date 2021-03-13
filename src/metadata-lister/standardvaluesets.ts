@@ -1,4 +1,4 @@
-import listStandardValueSets from '@mdapi-issues/listmetadata-standardvalueset/lib/workaround';
+import { listStandardValueSets } from '@mdapi-issues/listmetadata-standardvalueset';
 import type {
   Connection,
   DescribeMetadataResult,

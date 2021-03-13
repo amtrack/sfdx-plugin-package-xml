@@ -227,29 +227,29 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.2.tgz#26520bf09abe4a5644cd5414e37125a8954241dd"
   integrity sha512-tsAQNx32a8CoFhjhijUIhI4kccIAgmGhy8LZMZgGfmXcpMbPRUqn5LWmgRttILi6yeGmBJd2xsPkFMs0PzgPCw==
 
-"@mdapi-issues/listmetadata-installed-missing-namespaceprefix@1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-installed-missing-namespaceprefix/-/listmetadata-installed-missing-namespaceprefix-1.0.3.tgz#cf3544c59e2548fe943df042bba5281a627432b0"
-  integrity sha512-7gCHR44roQ5pAii3EOE+dIMu3ilmez5sV8lwatGvR41efPGyssrCngsz9nkGKbTtrXRdjVjz9XVPxaIhIUx4Ag==
+"@mdapi-issues/listmetadata-installed-missing-namespaceprefix@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-installed-missing-namespaceprefix/-/listmetadata-installed-missing-namespaceprefix-2.0.1.tgz#d0b400a7c5d289a626785aa6a5149afe2375c982"
+  integrity sha512-8fdP04Ucj/WioIyqfHdCm6c7aDBF56ElrwWgPveiZr697UWB8q7Kwu5zV+tchMHpqg9UlpjHj/YnbHirEGpxHA==
 
-"@mdapi-issues/listmetadata-recordtype-personaccount@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-recordtype-personaccount/-/listmetadata-recordtype-personaccount-1.0.2.tgz#fb620d8088282dd407e12c733aa024e919e90dc3"
-  integrity sha512-7MQG/yxjtuEx9JH3bLYV4Z98xlH97Oreq8FWi95gZbzbjmH86gP0D5FUXU7H/JE5Tp1RGCo8bDSUP7hbnpdf/g==
+"@mdapi-issues/listmetadata-recordtype-personaccount@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-recordtype-personaccount/-/listmetadata-recordtype-personaccount-2.0.1.tgz#96fcd7638b0de8e0720da77ff5f08a5f760eac45"
+  integrity sha512-tD+VjfisyfiEKwecJDVYRFEF0Z5Q24jvdjRznoa0zfu6GVwbeOfPsnWoXXrlRWKhz6YdiDkKlannwcjWakAxHA==
   dependencies:
     tslib "2.1.0"
 
-"@mdapi-issues/listmetadata-standardvalueset@1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-standardvalueset/-/listmetadata-standardvalueset-1.0.5.tgz#2ae93a5bb933f025f4b0a6b891ca58d2b3880579"
-  integrity sha512-zEkC6Ze+PAV4LnPJpul+oiWNt2RtUI8hGgZ199g+A2kE1mJV26gqoaNEBtX26zKxDswcwjWlRY8pHnBOx+V4OA==
+"@mdapi-issues/listmetadata-standardvalueset@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-standardvalueset/-/listmetadata-standardvalueset-2.0.1.tgz#465f0287dcbd90dd7c28d0cd8bf17878c54ad58a"
+  integrity sha512-k+5G4diNMmnHPAES1MglF3jAcR1fpEaa9AgNzcM75mDQVrfRHIZjG/VwXP3meQ2QRHZ/OuH+84xuDFjcxbb8gA==
   dependencies:
     tslib "2.1.0"
 
-"@mdapi-issues/listmetadata-standardvaluesettranslation-type@1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-standardvaluesettranslation-type/-/listmetadata-standardvaluesettranslation-type-1.0.4.tgz#329d59d8e22c22c457ca4891ee7359fb73333cda"
-  integrity sha512-vMb+QmuXPKwiRc18+WuDQOWM3hvTQT4rY46eWy9TqoepeHQWYneANkV0CK7bJRFPeo4rRTlnuXh06aVSaABAKQ==
+"@mdapi-issues/listmetadata-standardvaluesettranslation-type@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-standardvaluesettranslation-type/-/listmetadata-standardvaluesettranslation-type-2.0.1.tgz#f71f3cf2e3da1df7c70ec16401e408381b864669"
+  integrity sha512-8mKbV9xbouABCvFbo0s0EjnOYLIoYVOKMyUp7nW2PvvYH19FQXA16aKjGMcWebw1sFxOkITwiRbEwz6p+8oyhQ==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
