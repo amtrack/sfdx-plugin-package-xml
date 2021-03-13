@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@mdapi-issues/listmetadata-installed-missing-namespaceprefix": "1.0.3",
-    "@mdapi-issues/listmetadata-recordtype-personaccount": "1.0.2",
+    "@mdapi-issues/listmetadata-recordtype-personaccount": "2.0.0",
     "@mdapi-issues/listmetadata-standardvalueset": "1.0.5",
     "@mdapi-issues/listmetadata-standardvaluesettranslation-type": "1.0.4",
     "@oclif/command": "1.8.0",

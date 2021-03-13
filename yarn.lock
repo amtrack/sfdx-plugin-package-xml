@@ -232,10 +232,10 @@
   resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-installed-missing-namespaceprefix/-/listmetadata-installed-missing-namespaceprefix-1.0.3.tgz#cf3544c59e2548fe943df042bba5281a627432b0"
   integrity sha512-7gCHR44roQ5pAii3EOE+dIMu3ilmez5sV8lwatGvR41efPGyssrCngsz9nkGKbTtrXRdjVjz9XVPxaIhIUx4Ag==
 
-"@mdapi-issues/listmetadata-recordtype-personaccount@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-recordtype-personaccount/-/listmetadata-recordtype-personaccount-1.0.2.tgz#fb620d8088282dd407e12c733aa024e919e90dc3"
-  integrity sha512-7MQG/yxjtuEx9JH3bLYV4Z98xlH97Oreq8FWi95gZbzbjmH86gP0D5FUXU7H/JE5Tp1RGCo8bDSUP7hbnpdf/g==
+"@mdapi-issues/listmetadata-recordtype-personaccount@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-recordtype-personaccount/-/listmetadata-recordtype-personaccount-2.0.0.tgz#0d6437d41ad57358eb930a5bf5625066f28b9bb9"
+  integrity sha512-2K8uC8qcjc1/IyXsFA2WVIlVkJE49XT9lbvCMF8Tcr6w2zWiWEIJE1Ykpa+GvRYNw53JMqVIAWM/8vYfo6t7Pg==
   dependencies:
     tslib "2.1.0"
 
