@@ -1,7 +1,7 @@
 import {
   fixPersonAccountRecordTypes,
   queryPersonAccountRecordTypes
-} from '@mdapi-issues/listmetadata-recordtype-personaccount/lib/workaround';
+} from '@mdapi-issues/listmetadata-recordtype-personaccount';
 import type {
   Connection,
   DescribeMetadataResult,

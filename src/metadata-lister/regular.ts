@@ -1,5 +1,5 @@
-import addMissingNamespace from '@mdapi-issues/listmetadata-installed-missing-namespaceprefix/lib/workaround';
-import { fixNilType } from '@mdapi-issues/listmetadata-standardvaluesettranslation-type/lib/workaround';
+import { addMissingNamespace } from '@mdapi-issues/listmetadata-installed-missing-namespaceprefix';
+import { fixNilType } from '@mdapi-issues/listmetadata-standardvaluesettranslation-type';
 import type {
   Connection,
   DescribeMetadataResult,
