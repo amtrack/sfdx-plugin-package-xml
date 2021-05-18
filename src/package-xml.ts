@@ -9,8 +9,7 @@ import MetadataXml from './metadata-xml';
  * Attempt to match the formatting of the package.xml manifest
  * for better compatibility with version control systems
  */
-export default class PackageXml {
-  private components: Array<MetadataComponent>;
+export default class PackageXml extends Array<MetadataComponent> {
   private meta: Record<string, string>;
 
   /**
@@ -18,18 +17,21 @@ export default class PackageXml {
    * @param components
    * @param meta additional properties like `version` and for managed packages `description`, `fullName`, `namespacePrefix`, `postInstallClass`
    */
-  constructor(
+  static create(
     components: Array<MetadataComponent>,
     meta?: Record<string, string>
-  ) {
-    this.components = components.map(validateMetadataComponent);
-    this.meta = meta;
+  ): PackageXml {
+    const instance = new PackageXml(
+      ...components.map(validateMetadataComponent)
+    );
+    instance.meta = meta;
+    return instance;
   }
 
   // <types> are sorted alphanumerically but Settings are placed at the end
   // within <types> the properties are sorted alphanumerically (<name> after <members>)
   public toJSON(): any {
-    const components = transformFolders(this.components);
+    const components = transformFolders(this);
     const groupedComponents = groupBy(components, 'type');
     const types = Object.entries(groupedComponents)
       .map((entry) => {

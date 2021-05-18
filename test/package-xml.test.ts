@@ -10,6 +10,25 @@ import * as managedPackage from './fixtures/package/managedPackage.json';
 import * as simplePackage from './fixtures/package/package.json';
 
 describe('PackageXml', () => {
+  describe('PackageXml()', () => {
+    it('constructor should work like an Array', () => {
+      const p = new PackageXml(
+        { type: 'foo', fullName: 'TestA' },
+        { type: 'foo', fullName: 'TestB' }
+      );
+      expect(p.map((component) => component.fullName)).to.deep.equal([
+        'TestA',
+        'TestB'
+      ]);
+      expect(
+        p.filter((component) => component.fullName === 'TestA')
+      ).to.deep.equal([{ type: 'foo', fullName: 'TestA' }]);
+      p.push({ type: 'foo', fullName: 'TestC' });
+      expect(p.length).to.equal(3);
+      const p2 = new PackageXml(...p);
+      expect(p2.constructor === PackageXml);
+    });
+  });
   describe('#toString()', () => {
     it('should return the xml representation of a package', () => {
       const expectedXml = fs
@@ -17,7 +36,7 @@ describe('PackageXml', () => {
           path.resolve(__dirname, 'fixtures', 'package', 'package.xml')
         )
         .toString();
-      const p = new PackageXml(simplePackage.components, simplePackage.meta);
+      const p = PackageXml.create(simplePackage.components, simplePackage.meta);
       expect(p.toString()).to.deep.equal(expectedXml);
     });
     it('should return the xml representation of a managed package', () => {
@@ -26,7 +45,10 @@ describe('PackageXml', () => {
           path.resolve(__dirname, 'fixtures', 'package', 'managedPackage.xml')
         )
         .toString();
-      const p = new PackageXml(managedPackage.components, managedPackage.meta);
+      const p = PackageXml.create(
+        managedPackage.components,
+        managedPackage.meta
+      );
       expect(p.toString()).to.deep.equal(expectedXml);
     });
     it('should return the xml representation of a destructive changes package', () => {
@@ -40,7 +62,7 @@ describe('PackageXml', () => {
           )
         )
         .toString();
-      const p = new PackageXml(
+      const p = PackageXml.create(
         destructiveChanges.components,
         destructiveChanges.meta
       );

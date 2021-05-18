@@ -52,7 +52,7 @@ export default class PackageXmlCreateCommand extends SfdxCommand {
       this.flags.metadata === '-'
         ? parseNewLineSeparatedValues(await getStdin())
         : parseCommaSeparatedValues(this.flags.metadata);
-    const packageXml = new PackageXml(
+    const packageXml = PackageXml.create(
       metadataComponentNames.map(parseMetadataComponentName),
       meta
     ).toString();
