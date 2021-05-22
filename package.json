@@ -18,7 +18,7 @@
     "@salesforce/command": "3.1.0",
     "get-stdin": "8.0.0",
     "lodash": "4.17.20",
-    "picomatch": "2.2.2",
+    "picomatch": "2.3.0",
     "tslib": "2.1.0"
   },
   "devDependencies": {
