@@ -37,7 +37,7 @@
     "jsforce": "*",
     "mocha": "8.3.2",
     "nyc": "15.1.0",
-    "prettier": "2.2.1",
+    "prettier": "2.3.1",
     "sfdx-cli": "7.92.0",
     "ts-node": "9.1.1",
     "typescript": "4.2.4"
