@@ -35,7 +35,7 @@
     "eslint": "7.20.0",
     "eslint-config-prettier": "8.2.0",
     "jsforce": "*",
-    "mocha": "8.3.2",
+    "mocha": "9.0.1",
     "nyc": "15.1.0",
     "prettier": "2.2.1",
     "sfdx-cli": "7.92.0",
