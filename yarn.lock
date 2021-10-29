@@ -733,22 +733,6 @@
     mv "~2"
     safe-json-stringify "~1"
 
-"@salesforce/command@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@salesforce/command/-/command-3.1.0.tgz#98874539aeda69aeb20765dcf7ed02a2945cec45"
-  integrity sha512-Ggz+P35uJVd2w+R66TGz1Rs4jr6KKmyC3bkpgbJTm+yjaOjy2l/if2hus6fhZ680LUxCucDVXbyEjdzu3B+ioA==
-  dependencies:
-    "@oclif/command" "^1.5.17"
-    "@oclif/errors" "^1.2.2"
-    "@oclif/parser" "^3.8.3"
-    "@oclif/plugin-help" "^2.2.0"
-    "@oclif/test" "^1.2.4"
-    "@salesforce/core" "^2.16.3"
-    "@salesforce/kit" "^1.2.2"
-    "@salesforce/ts-types" "^1.2.0"
-    chalk "^2.4.2"
-    cli-ux "^4.9.3"
-
 "@salesforce/command@3.1.3":
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/@salesforce/command/-/command-3.1.3.tgz#d72ed2bc516ce7fea1151576a997b45fd1752d26"
@@ -870,26 +854,6 @@
     graceful-fs "^4.2.4"
     jsen "0.6.6"
     jsforce "1.9.3"
-    jsonwebtoken "8.5.0"
-    mkdirp "1.0.4"
-    sfdx-faye "^1.0.9"
-
-"@salesforce/core@^2.16.3":
-  version "2.18.2"
-  resolved "https://registry.yarnpkg.com/@salesforce/core/-/core-2.18.2.tgz#77b737c8311daab4564b6cb50aac764e68efec89"
-  integrity sha512-1qAZRBF80LjiDTitKAZS8+kvguARc8Q9WBNUkPj3Kz95srei0lg/eiS7IMzREJD0OOfXxMVFPGtgw/8Du50w/g==
-  dependencies:
-    "@salesforce/bunyan" "^2.0.0"
-    "@salesforce/kit" "^1.3.3"
-    "@salesforce/schemas" "^1.0.1"
-    "@salesforce/ts-types" "^1.0.0"
-    "@types/graceful-fs" "^4.1.3"
-    "@types/jsforce" "1.9.23"
-    "@types/mkdirp" "1.0.0"
-    debug "^3.1.0"
-    graceful-fs "^4.2.4"
-    jsen "0.6.6"
-    jsforce "^1.10.0"
     jsonwebtoken "8.5.0"
     mkdirp "1.0.4"
     sfdx-faye "^1.0.9"
