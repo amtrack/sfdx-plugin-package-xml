@@ -5,6 +5,7 @@ import {
   parseCommaSeparatedValues,
   parseNewLineSeparatedValues
 } from '../../../cli';
+import * as filters from '../../../filters';
 import { listAllMetadata } from '../../../listallmetadata';
 import { ensureMetadataComponentPattern } from '../../../metadata-component';
 import getStdin = require('get-stdin');
@@ -84,6 +85,31 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
       description: `comma-separated list of metadata component name expressions to ignore
       Example: 'InstalledPackage:*,Profile:*,Report:unfiled$public/*,CustomField:Account.*'`
     }),
+    unlocked: flags.boolean({
+      description: `list metadata components from Unlocked Packages`,
+      default: null,
+      allowNo: true
+    }),
+    managed: flags.boolean({
+      description: `list metadata components from Managed Packages`,
+      default: null,
+      allowNo: true
+    }),
+    managedreadonly: flags.boolean({
+      description: `list metadata components from Managed Packages that are readonly`,
+      default: null,
+      allowNo: true
+    }),
+    managedwriteable: flags.boolean({
+      description: `list metadata components from Managed Packages that are writeable`,
+      default: null,
+      allowNo: true
+    }),
+    unmanaged: flags.boolean({
+      description: `list metadata components which are not packaged`,
+      default: null,
+      allowNo: true
+    }),
     names: flags.boolean({
       description: `output only component names (e.g. 'CustomObject:Account',...)`
     }),
@@ -103,7 +129,26 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
     allowPatterns = allowPatterns.length ? allowPatterns : ['*:*', '*:**/*'];
     allowPatterns = allowPatterns.map(ensureMetadataComponentPattern);
     const ignorePatterns = parseCommaSeparatedValues(this.flags.ignore);
-    const fileProperties = await listAllMetadata(
+    const allowFunctions = [];
+    const ignoreFunctions = [];
+    const flag2FunctionName = {
+      unlocked: 'isUnlocked',
+      managed: 'isManaged',
+      managedreadonly: 'isManagedReadOnly',
+      unmanaged: 'isUnmanaged',
+      managedwriteable: 'isManagedWriteable'
+    };
+    for (const filterFlag of Object.keys(flag2FunctionName)) {
+      const functionName = flag2FunctionName[filterFlag];
+      if (this.flags[filterFlag] !== null) {
+        if (this.flags[filterFlag]) {
+          allowFunctions.push(filters[functionName]);
+        } else {
+          ignoreFunctions.push(filters[functionName]);
+        }
+      }
+    }
+    let fileProperties = await listAllMetadata(
       conn,
       this.flags,
       allowPatterns,
