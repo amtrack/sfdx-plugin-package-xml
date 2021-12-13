@@ -22,7 +22,7 @@ describe('folderbased', function () {
     it('lists folders and files in folders', async () => {
       const org = await Org.create({});
       const conn = org.getConnection();
-      const lister = new FolderBasedMetadata(['**/*'], []);
+      const lister = new FolderBasedMetadata(['*:*', '*:**/*'], []);
       const result = await lister.run(conn, null, []);
       expect(result.map(toMetadataComponentName).sort()).to.deep.equal(
         expected

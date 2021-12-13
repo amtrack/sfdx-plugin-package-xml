@@ -53,6 +53,18 @@ describe('match', () => {
         ['InstalledPackage:Foo']
       ]);
     });
+    it('matches using default allow pattern', () => {
+      expect(
+        match(
+          ['CustomObject:Account', 'EmailTemplate:unfiled$public/Dummy'],
+          ['*:*', '*:**/*'],
+          (x) => x
+        )
+      ).to.deep.equal([
+        ['CustomObject:Account', 'EmailTemplate:unfiled$public/Dummy'],
+        []
+      ]);
+    });
     it('matches using ignore list', () => {
       expect(
         match(
