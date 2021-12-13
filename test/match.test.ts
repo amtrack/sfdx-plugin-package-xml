@@ -19,6 +19,17 @@ describe('match', () => {
         )
       ).to.deep.equal([['InstalledPackage:Foo', 'CustomObject:Account'], []]);
     });
+    it('matches both folders and files in folders with a wildcard', () => {
+      expect(match(['foo', 'foo/bar', 'foo/bar/baz'], ['**'])).to.deep.equal([
+        ['foo', 'foo/bar', 'foo/bar/baz'],
+        []
+      ]);
+    });
+    it('unfortunately does not match both folders and files in folders with a dedicated expression', () => {
+      expect(
+        match(['foo', 'foo/bar', 'foo/bar/baz'], ['foo/**/*'])
+      ).to.deep.equal([['foo/bar', 'foo/bar/baz'], ['foo']]);
+    });
     it('matches everything but InstalledPackages', () => {
       expect(
         match(
@@ -48,14 +59,19 @@ describe('match', () => {
           [
             'InstalledPackage:Foo',
             'InstalledPackage:Bar',
-            'CustomObject:Account'
+            'CustomObject:Account',
+            'EmailTemplate:unfiled$public/Dummy'
           ],
           ['**/*'],
           (x) => x,
           { ignore: ['InstalledPackage:Foo'] }
         )
       ).to.deep.equal([
-        ['InstalledPackage:Bar', 'CustomObject:Account'],
+        [
+          'InstalledPackage:Bar',
+          'CustomObject:Account',
+          'EmailTemplate:unfiled$public/Dummy'
+        ],
         ['InstalledPackage:Foo']
       ]);
     });
