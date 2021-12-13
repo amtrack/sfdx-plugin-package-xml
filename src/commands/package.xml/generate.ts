@@ -6,9 +6,9 @@ import { toMetadataComponentName } from '../../metadata-component';
 import PackageXml from '../../package-xml';
 
 export default class PackageXmlGenerateCommand extends SfdxCommand {
-  public static description = `generate a package.xml manifest based on the listmetadata/listallmetadata output`;
+  public static description = `generate a package.xml manifest based on the force:mdapi:listallmetadata output`;
   public static examples = [
-    `generate and output a package.xml manifest based on the listallmetadata result
+    `generate and output a package.xml manifest based on the force:mdapi:listallmetadata result
     $ sfdx <%= command.id %> --inputfile /tmp/fileproperties.json
     <?xml version="1.0" encoding="UTF-8"?>
     <Package xmlns="http://soap.sforce.com/2006/04/metadata">

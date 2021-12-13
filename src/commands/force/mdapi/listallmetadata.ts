@@ -12,8 +12,11 @@ import getStdin = require('get-stdin');
 
 export default class MdapiListAllMetadataCommand extends SfdxCommand {
   public static description = `list all metadata components
-    Compared to sfdx force:mdapi:listmetadata this command lists metadata components of all types and in all folders by default.
-    Additionally you can choose to include retrieving metadata components of child metadata types.`;
+    Compared to sfdx force:mdapi:listmetadata this command lists metadata components of all types.
+    Additionally you can list metadata components for:
+      - folder-based metadata types (Dashboard, Document, EmailTemplate, Report)
+      - StandardValueSets (due to a bug)
+      - child metadata types (CustomField,CustomLabel,...)`;
   public static examples = [
     `output file properties
     $ sfdx <%= command.id %>
@@ -68,7 +71,7 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
       allowNo: true
     }),
     standardvaluesets: flags.boolean({
-      description: `list StandardValueSets`,
+      description: `workaround to list StandardValueSets which are not returned when running 'sfdx force:mdapi:listmetadata -m StandardValueSet'`,
       default: true,
       allowNo: true
     }),
