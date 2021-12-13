@@ -24,9 +24,9 @@ export default class RegularMetadata extends MetadataLister {
         };
       }
     );
-    const filteredMetadataQueries = this.filter(
+    const filteredMetadataQueries = this.filterTypes(
       metadataQueries,
-      (x) => `${x.type}:`
+      (x) => `${x.type}`
     );
     let result = await listMetadataInChunks(conn, filteredMetadataQueries);
     result = fixNilType(result, describeMetadataResult);

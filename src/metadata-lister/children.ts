@@ -29,9 +29,9 @@ export default class ChildrenMetadata extends MetadataLister {
     const childMetadataQueries = childMetadataTypes.map((childMetadataType) => {
       return { type: childMetadataType };
     });
-    const filteredChildMetadataQueries = this.filter(
+    const filteredChildMetadataQueries = this.filterTypes(
       childMetadataQueries,
-      (x) => `${x.type}:`
+      (x) => `${x.type}`
     );
     let result = await listMetadataInChunks(conn, filteredChildMetadataQueries);
     let personAccountRecordTypes = [];

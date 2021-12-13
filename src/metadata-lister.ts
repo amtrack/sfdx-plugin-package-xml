@@ -38,4 +38,19 @@ export default abstract class MetadataLister {
     });
     return matched;
   }
+
+  public filterTypes(
+    items: Array<any>,
+    toString?: ToStringFunction
+  ): Array<any> {
+    const [matched] = match(
+      items,
+      this.allowPatterns.map((pattern) => pattern.split(':')[0]),
+      toString,
+      {
+        ignore: this.ignorePatterns.map((pattern) => pattern.split(':')[0])
+      }
+    );
+    return matched;
+  }
 }
