@@ -1,6 +1,7 @@
 import { flags, SfdxCommand } from '@salesforce/command';
 import { promises as fs } from 'fs';
 import {
+  formatFileProperties,
   parseCommaSeparatedValues,
   parseNewLineSeparatedValues
 } from '../../../cli';
@@ -84,6 +85,11 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
     }),
     names: flags.boolean({
       description: `output only component names (e.g. 'CustomObject:Account',...)`
+    }),
+    output: flags.string({
+      description: 'the output format',
+      default: 'json',
+      options: ['json', 'name', 'name-csv', 'xmlpath', 'xmlpath-csv']
     })
   };
 
@@ -101,16 +107,36 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
       allowPatterns,
       ignorePatterns
     );
-    if (this.flags.resultfile) {
-      const fileData: string = JSON.stringify(fileProperties, null, 4);
-      await fs.writeFile(this.flags.resultfile, fileData);
-    } else if (this.flags.names) {
-      const componentNames = fileProperties.map((fileProperty) => {
-        return `${fileProperty.type}:${fileProperty.fullName}`;
+    if (allowFunctions.length > 0) {
+      fileProperties = fileProperties.filter((fp) => {
+        const results = allowFunctions.map((f) => f(fp));
+        return results.some((x) => x === true);
       });
-      this.ux.log(componentNames.sort().join('\n'));
+    }
+    if (ignoreFunctions.length > 0) {
+      fileProperties = fileProperties.filter((fp) => {
+        const results = ignoreFunctions.map((f) => f(fp));
+        return !results.some((x) => x === true);
+      });
+    }
+    if (this.flags.names) {
+      // backwards compatibility
+      this.flags.output = 'name';
+    }
+    if (this.flags.output === 'json') {
+      if (this.flags.resultfile) {
+        const fileData: string = JSON.stringify(fileProperties, null, 4);
+        await fs.writeFile(this.flags.resultfile, fileData);
+      } else {
+        this.ux.logJson(fileProperties);
+      }
     } else {
-      this.ux.logJson(fileProperties);
+      const output = formatFileProperties(fileProperties, this.flags.output);
+      if (this.flags.resultfile) {
+        await fs.writeFile(this.flags.resultfile, output);
+      } else {
+        this.ux.log(output);
+      }
     }
     return fileProperties;
   }
