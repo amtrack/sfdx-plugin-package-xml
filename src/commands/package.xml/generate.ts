@@ -89,6 +89,12 @@ export default class PackageXmlGenerateCommand extends SfdxCommand {
     if (this.flags.defaultignore) {
       ignorePatterns.push(...this.flags.defaultignore);
     }
+    // don't list 'CustomLabels:CustomLabels' if specific 'CustomLabel:XXX' are given
+    if (fileProperties.find((fp) => fp.type === 'CustomLabel') !== null) {
+      fileProperties = fileProperties.filter(
+        (fp) => fp.type !== 'CustomLabels'
+      );
+    }
     const [, keep] = match(
       fileProperties,
       ignorePatterns,
