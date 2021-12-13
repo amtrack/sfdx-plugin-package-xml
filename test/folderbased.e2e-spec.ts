@@ -9,6 +9,7 @@ const expected = [
   'Report:FooReports/FooAccountsLightningReport_vgv',
   'Report:FooSubReports/FooAccountsSubLightningReport_kgv',
   'Report:unfiled$public/flow_screen_prebuilt_report',
+  'ReportFolder:EinsteinBotReports',
   'ReportFolder:FooReports',
   'ReportFolder:FooSubReports',
   'ReportFolder:unfiled$public'
