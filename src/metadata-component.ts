@@ -53,3 +53,10 @@ export function validateMetadataComponent(
   }
   return metadataComponent;
 }
+
+export function ensureMetadataComponentPattern(input: string): string {
+  if (!input.includes(':')) {
+    return `${input}:*`;
+  }
+  return input;
+}

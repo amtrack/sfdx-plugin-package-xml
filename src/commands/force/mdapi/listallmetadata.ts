@@ -6,6 +6,7 @@ import {
   parseNewLineSeparatedValues
 } from '../../../cli';
 import { listAllMetadata } from '../../../listallmetadata';
+import { ensureMetadataComponentPattern } from '../../../metadata-component';
 import getStdin = require('get-stdin');
 
 export default class MdapiListAllMetadataCommand extends SfdxCommand {
@@ -100,6 +101,7 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
         ? parseNewLineSeparatedValues(await getStdin())
         : parseCommaSeparatedValues(this.flags.metadata);
     allowPatterns = allowPatterns.length ? allowPatterns : ['*:*', '*:**/*'];
+    allowPatterns = allowPatterns.map(ensureMetadataComponentPattern);
     const ignorePatterns = parseCommaSeparatedValues(this.flags.ignore);
     const fileProperties = await listAllMetadata(
       conn,
