@@ -15,7 +15,7 @@
     "@oclif/command": "1.8.0",
     "@oclif/config": "1.17.0",
     "@oclif/errors": "1.3.4",
-    "@salesforce/command": "3.1.0",
+    "@salesforce/command": "4.2.1",
     "get-stdin": "8.0.0",
     "lodash": "4.17.21",
     "picomatch": "2.3.0",
