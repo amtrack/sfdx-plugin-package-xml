@@ -22,11 +22,24 @@ describe('folderbased', function () {
     it('lists folders and files in folders', async () => {
       const org = await Org.create({});
       const conn = org.getConnection();
-      const lister = new FolderBasedMetadata(['**/*'], []);
+      const lister = new FolderBasedMetadata(['*:*', '*:**/*'], []);
       const result = await lister.run(conn, null, []);
       expect(result.map(toMetadataComponentName).sort()).to.deep.equal(
         expected
       );
+    });
+    it('lists only unfiled$public folder and files', async () => {
+      const org = await Org.create({});
+      const conn = org.getConnection();
+      const lister = new FolderBasedMetadata(
+        ['ReportFolder:unfiled$public', 'Report:**/*'],
+        []
+      );
+      const result = await lister.run(conn, null, []);
+      expect(result.map(toMetadataComponentName).sort()).to.deep.equal([
+        'Report:unfiled$public/flow_screen_prebuilt_report',
+        'ReportFolder:unfiled$public'
+      ]);
     });
   });
 });

@@ -4,6 +4,7 @@ import type {
   FileProperties
 } from 'jsforce';
 import { listMetadataInChunks } from '../jsforce-utils';
+import { toMetadataComponentName } from '../metadata-component';
 import MetadataLister from '../metadata-lister';
 
 export const FOLDER_BASED_METADATA_MAP = {
@@ -28,25 +29,25 @@ export default class FolderBasedMetadata extends MetadataLister {
         type: folderType
       };
     });
-    const filteredFolderQueries = this.filter(
+    const filteredFolderQueries = this.filterTypes(
       folderQueries,
-      (x) => `${x.type}:`
+      (x) => `${x.type}`
     );
     const folders = await listMetadataInChunks(conn, filteredFolderQueries);
-    const inFolderQueries = folders.map((folder) => {
+    // NOTE: To pre-filter (allow or ignore) Reports in a certain folder,
+    // please use the expression `ReportFolder:unfiled$public`
+    // instead of `Report:unfiled$public,Report:unfiled$public/*`
+    const filteredFolders = this.filter(folders, toMetadataComponentName);
+    const inFolderQueries = filteredFolders.map((folder) => {
       return {
         type: FOLDER_BASED_METADATA_MAP[folder.type],
         folder: folder.fullName
       };
     });
-    const filteredInFolderQueries = this.filter(
-      inFolderQueries,
-      (x) => `${x.type}:${x.folder}`
-    );
     const inFolderFileProperties = await listMetadataInChunks(
       conn,
-      filteredInFolderQueries
+      inFolderQueries
     );
-    return [...folders, ...inFolderFileProperties];
+    return [...filteredFolders, ...inFolderFileProperties];
   }
 }

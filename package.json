@@ -1,6 +1,6 @@
 {
   "name": "sfdx-plugin-package-xml",
-  "description": "sfdx plugin for generating a package.xml manifest",
+  "description": "explore metadata in an org and generate a package.xml manifest",
   "version": "0.0.0-development",
   "author": "Matthias Rolke @amtrack",
   "bugs": "https://github.com/amtrack/sfdx-plugin-package-xml/issues",
@@ -49,7 +49,13 @@
   ],
   "homepage": "https://github.com/amtrack/sfdx-plugin-package-xml",
   "keywords": [
-    "sfdx-plugin"
+    "sfdx",
+    "sfdx-plugin",
+    "package.xml",
+    "manifest",
+    "metadata backup",
+    "file properties",
+    "salesforce"
   ],
   "license": "MIT",
   "oclif": {
@@ -57,7 +63,7 @@
     "bin": "sfdx",
     "topics": {
       "package.xml": {
-        "description": "commands for generating and processing a package.xml manifest"
+        "description": "explore metadata in an org and generate a package.xml manifest"
       }
     },
     "devPlugins": [
