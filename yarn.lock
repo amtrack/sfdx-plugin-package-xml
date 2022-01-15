@@ -261,12 +261,12 @@
   dependencies:
     tslib "2.1.0"
 
-"@mdapi-issues/listmetadata-standardvalueset@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-standardvalueset/-/listmetadata-standardvalueset-2.0.1.tgz#465f0287dcbd90dd7c28d0cd8bf17878c54ad58a"
-  integrity sha512-k+5G4diNMmnHPAES1MglF3jAcR1fpEaa9AgNzcM75mDQVrfRHIZjG/VwXP3meQ2QRHZ/OuH+84xuDFjcxbb8gA==
+"@mdapi-issues/listmetadata-standardvalueset@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@mdapi-issues/listmetadata-standardvalueset/-/listmetadata-standardvalueset-2.0.2.tgz#529420a96636a944c70fa20312f972885f8d7ccb"
+  integrity sha512-VWS6pDujw82RgYyc4PnhhdyVag/4yaPuF5lGUjwOzqeZo0lppiHbPKQSCzD/wr+mT+u+9YSYHwmPpalHgQONRg==
   dependencies:
-    tslib "2.1.0"
+    tslib "2.3.1"
 
 "@mdapi-issues/listmetadata-standardvaluesettranslation-type@2.0.1":
   version "2.0.1"
