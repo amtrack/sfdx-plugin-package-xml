@@ -13,7 +13,7 @@
     "@mdapi-issues/listmetadata-standardvalueset": "2.0.2",
     "@mdapi-issues/listmetadata-standardvaluesettranslation-type": "2.0.1",
     "@salesforce/command": "4.2.1",
-    "get-stdin": "8.0.0",
+    "get-stdin": "9.0.0",
     "lodash": "4.17.21",
     "picomatch": "2.3.1",
     "tslib": "2.3.1"
