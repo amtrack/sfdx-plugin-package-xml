@@ -5,7 +5,8 @@
     "rootDir": "./src",
     "outDir": "./lib",
     "importHelpers": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "skipLibCheck": true
   },
   "include": ["./src/**/*"]
 }
