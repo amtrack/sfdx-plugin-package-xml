@@ -113,6 +113,21 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
       default: null,
       allowNo: true
     }),
+    manageddeprecated: flags.boolean({
+      description: `list metadata components which are managed but deprecated`,
+      default: null,
+      allowNo: true
+    }),
+    unlockeddeprecated: flags.boolean({
+      description: `list metadata components from Unlocked Packages that are deprecated`,
+      default: null,
+      allowNo: true
+    }),
+    deprecated: flags.boolean({
+      description: `list metadata components that are deprecated`,
+      default: null,
+      allowNo: true
+    }),
     names: flags.boolean({
       description: `output only component names (e.g. 'CustomObject:Account',...)`
     }),
@@ -139,7 +154,10 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
       managed: 'isManaged',
       managedreadonly: 'isManagedReadOnly',
       unmanaged: 'isUnmanaged',
-      managedwriteable: 'isManagedWriteable'
+      managedwriteable: 'isManagedWriteable',
+      manageddeprecated: 'isManagedDeprecated',
+      unlockeddeprecated: 'isUnlockedDeprecated',
+      deprecated: 'isDeprecated'
     };
     for (const filterFlag of Object.keys(flag2FunctionName)) {
       const functionName = flag2FunctionName[filterFlag];
