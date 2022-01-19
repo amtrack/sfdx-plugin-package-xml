@@ -49,3 +49,17 @@ export function isUnmanaged(fileProperties: FileProperties): boolean {
     fileProperties.manageableState === undefined
   );
 }
+
+export function isUnlockedDeprecated(fileProperties: FileProperties): boolean {
+  return fileProperties.manageableState === 'deprecatedEditable';
+}
+
+export function isManagedDeprecated(fileProperties: FileProperties): boolean {
+  return fileProperties.manageableState === 'deprecated';
+}
+
+export function isDeprecated(fileProperties: FileProperties): boolean {
+  return (
+    isUnlockedDeprecated(fileProperties) || isManagedDeprecated(fileProperties)
+  );
+}
