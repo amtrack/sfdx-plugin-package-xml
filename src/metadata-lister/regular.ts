@@ -32,6 +32,7 @@ export default class RegularMetadata extends MetadataLister {
     result = fixNilType(result, describeMetadataResult);
     result = addMissingNamespace(result);
     result = fixCustomFeedFilter(result);
+    result = ignoreFlowDefinition(result, conn.version);
     return result;
   }
 }
@@ -49,4 +50,16 @@ export function fixCustomFeedFilter(
     }
     return fileProperty;
   });
+}
+
+export function ignoreFlowDefinition(
+  fileProperties: FileProperties[],
+  apiVersion: string
+): FileProperties[] {
+  if (apiVersion >= '44.0') {
+    return fileProperties.filter(
+      (fileProperty) => fileProperty.type !== 'FlowDefinition'
+    );
+  }
+  return fileProperties;
 }
