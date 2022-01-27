@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import {
   parseMetadataComponentName,
+  simplifyMetadataComponentPattern,
   toMetadataComponentName
 } from '../src/metadata-component';
 
@@ -37,6 +38,30 @@ describe('metadata-component', () => {
           fullName: 'Account'
         });
       }).to.throw(/is not a valid MetadataComponent/);
+    });
+  });
+  describe('simplifyMetadataComponentPattern()', () => {
+    it('returns the type for wildcard patterns', () => {
+      expect(simplifyMetadataComponentPattern('CustomObject:*')).to.deep.equal(
+        'CustomObject'
+      );
+      expect(simplifyMetadataComponentPattern('Report:**/*')).to.deep.equal(
+        'Report'
+      );
+      expect(simplifyMetadataComponentPattern('Report:*/*')).to.deep.equal(
+        'Report'
+      );
+      expect(simplifyMetadataComponentPattern('CustomField:*.*')).to.deep.equal(
+        'CustomField'
+      );
+    });
+    it('returns the given pattern for complex patterns or component names', () => {
+      expect(
+        simplifyMetadataComponentPattern('CustomObject:Account')
+      ).to.deep.equal('CustomObject:Account');
+      expect(
+        simplifyMetadataComponentPattern('CustomField:*__*.*')
+      ).to.deep.equal('CustomField:*__*.*');
     });
   });
 });

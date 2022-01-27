@@ -60,3 +60,11 @@ export function ensureMetadataComponentPattern(input: string): string {
   }
   return input;
 }
+
+export function simplifyMetadataComponentPattern(input: string): string {
+  const metadataComponent = parseMetadataComponentName(input);
+  if (/^[*./]+$/.test(metadataComponent.fullName)) {
+    return metadataComponent.type;
+  }
+  return input;
+}

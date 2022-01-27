@@ -4,6 +4,10 @@ import type {
   FileProperties
 } from 'jsforce';
 import { match, ToStringFunction } from './match';
+import {
+  parseMetadataComponentName,
+  simplifyMetadataComponentPattern
+} from './metadata-component';
 
 export interface IMetadataLister {
   id: string;
@@ -45,10 +49,14 @@ export default abstract class MetadataLister {
   ): Array<any> {
     const [matched] = match(
       items,
-      this.allowPatterns.map((pattern) => pattern.split(':')[0]),
+      // allow type when the pattern contains the type
+      this.allowPatterns.map(
+        (pattern) => parseMetadataComponentName(pattern).type
+      ),
       toString,
       {
-        ignore: this.ignorePatterns.map((pattern) => pattern.split(':')[0])
+        // ignore type only when the pattern is a wildcard for this type
+        ignore: this.ignorePatterns.map(simplifyMetadataComponentPattern)
       }
     );
     return matched;
