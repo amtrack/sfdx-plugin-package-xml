@@ -128,6 +128,11 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
       default: null,
       allowNo: true
     }),
+    standard: flags.boolean({
+      description: `list metadata components like standard objects, settings,...`,
+      default: null,
+      allowNo: true
+    }),
     names: flags.boolean({
       description: `output only component names (e.g. 'CustomObject:Account',...)`
     }),
@@ -157,7 +162,8 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
       managedwriteable: 'isManagedWriteable',
       manageddeprecated: 'isManagedDeprecated',
       unlockeddeprecated: 'isUnlockedDeprecated',
-      deprecated: 'isDeprecated'
+      deprecated: 'isDeprecated',
+      standard: 'isStandard'
     };
     for (const filterFlag of Object.keys(flag2FunctionName)) {
       const functionName = flag2FunctionName[filterFlag];

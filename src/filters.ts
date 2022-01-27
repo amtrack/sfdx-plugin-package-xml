@@ -21,6 +21,8 @@ const MANAGED_READONLY_TYPES = [
   'ApexPage'
 ];
 
+const STANDARD_USERNAMES = ['Automated Process', 'salesforce.com'];
+
 export function isManaged(fileProperties: FileProperties): boolean {
   return fileProperties.manageableState === 'installed';
 }
@@ -61,5 +63,16 @@ export function isManagedDeprecated(fileProperties: FileProperties): boolean {
 export function isDeprecated(fileProperties: FileProperties): boolean {
   return (
     isUnlockedDeprecated(fileProperties) || isManagedDeprecated(fileProperties)
+  );
+}
+
+export function isStandard(fileProperties: FileProperties): boolean {
+  return (
+    (!fileProperties.namespacePrefix &&
+      !fileProperties.manageableState &&
+      !fileProperties.id) ||
+    (STANDARD_USERNAMES.includes(fileProperties.createdByName) &&
+      STANDARD_USERNAMES.includes(fileProperties.lastModifiedByName)) ||
+    fileProperties.namespacePrefix === 'standard'
   );
 }
