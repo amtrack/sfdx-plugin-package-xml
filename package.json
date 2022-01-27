@@ -33,7 +33,7 @@
     "mocha": "9.1.4",
     "nyc": "15.1.0",
     "prettier": "2.5.1",
-    "sfdx-cli": "7.134.0",
+    "sfdx-cli": "7.135.0",
     "ts-node": "10.4.0",
     "typescript": "4.5.5"
   },
