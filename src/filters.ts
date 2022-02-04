@@ -21,6 +21,27 @@ const MANAGED_READONLY_TYPES = [
   'ApexPage'
 ];
 
+// https://developer.salesforce.com/docs/atlas.en-us.234.0.packagingGuide.meta/packagingGuide/packaging_component_attributes.htm
+// Metadata Types which have "All attributes" (and with some exceptions) in the "Subscriber and Developer Editable" column
+const SUBSCRIBER_MOSTLY_EDITABLE_TYPES = [
+  'CustomApplication',
+  'CompactLayout',
+  'Dashboard',
+  'Document',
+  'EmailTemplate',
+  'DocumentFolder',
+  'EmailFolder',
+  'ReportFolder',
+  'HomePageLayout',
+  'Letterhead',
+  'ListView',
+  'NamedCredential',
+  'Layout',
+  'RemoteSiteSetting',
+  'Report',
+  'AnalyticSnapshot'
+];
+
 const STANDARD_USERNAMES = ['Automated Process', 'salesforce.com'];
 
 export function isManaged(fileProperties: FileProperties): boolean {
@@ -37,6 +58,15 @@ export function isManagedReadOnly(fileProperties: FileProperties): boolean {
 export function isManagedWriteable(fileProperties: FileProperties): boolean {
   return (
     !MANAGED_READONLY_TYPES.includes(fileProperties.type) &&
+    isManaged(fileProperties)
+  );
+}
+
+export function isManagedMostlySubscriberEditable(
+  fileProperties: FileProperties
+): boolean {
+  return (
+    SUBSCRIBER_MOSTLY_EDITABLE_TYPES.includes(fileProperties.type) &&
     isManaged(fileProperties)
   );
 }

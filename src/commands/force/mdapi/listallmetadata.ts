@@ -108,6 +108,11 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
       default: null,
       allowNo: true
     }),
+    managedmostlysubscribereditable: flags.boolean({
+      description: `list metadata components from Managed Packages that are mostly subscriber editable`,
+      default: null,
+      allowNo: true
+    }),
     unmanaged: flags.boolean({
       description: `list metadata components which are not packaged`,
       default: null,
@@ -160,6 +165,7 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
       managedreadonly: 'isManagedReadOnly',
       unmanaged: 'isUnmanaged',
       managedwriteable: 'isManagedWriteable',
+      managedmostlysubscribereditable: 'isManagedMostlySubscriberEditable',
       manageddeprecated: 'isManagedDeprecated',
       unlockeddeprecated: 'isUnlockedDeprecated',
       deprecated: 'isDeprecated',
