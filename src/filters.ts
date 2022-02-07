@@ -39,7 +39,9 @@ const SUBSCRIBER_MOSTLY_EDITABLE_TYPES = [
   'Layout',
   'RemoteSiteSetting',
   'Report',
-  'AnalyticSnapshot'
+  'AnalyticSnapshot',
+  'FieldSet', // Selected fields (only subscriber controlled)
+  // 'QuickAction' // Action layout, Predefined values for action fields
 ];
 
 const STANDARD_USERNAMES = ['Automated Process', 'salesforce.com'];
