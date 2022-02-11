@@ -199,6 +199,22 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
         return !results.some((x) => x === true);
       });
     }
+    if (this.flags.children) {
+      // ignore parent types when children are listed explicitly
+      const PARENT_METADATA_TYPES = [
+        'AssignmentRules',
+        'AutoResponseRules',
+        'CustomLabels',
+        'EscalationRules',
+        'ManagedTopics',
+        'MatchingRules',
+        'SharingRules',
+        'Workflow'
+      ];
+      fileProperties = fileProperties.filter(
+        (fp) => !PARENT_METADATA_TYPES.includes(fp.type)
+      );
+    }
     if (this.flags.names) {
       // backwards compatibility
       this.flags.output = 'name';
