@@ -25,7 +25,14 @@ sfdx force:mdapi:listallmetadata -h
 sfdx package.xml:generate -h
 ```
 
-Note: The first command is _force:mdapi:list**all**metadata_ compared to the official _force:mdapi:listmetadata_ command.
+> :warning: Note: The first command is similar to the official (`force:mdapi:listmetadata`) command.
+>
+> However our command lists Metadata for **ALL** Metadata Types.
+>
+> ```diff
+> -force:mdapi:listmetadata
+> +force:mdapi:listallmetadata
+> ```
 
 ## Use Cases
 
@@ -33,7 +40,7 @@ Retrieve all Metadata from an org named `acme-dev` (a.k.a "Metadata Backup", a.k
 
 ```console
 sfdx force:mdapi:listallmetadata -f /tmp/fileproperties.json -u acme-dev
-sfdx package.xml:generate -j /tmp/fileproperties.json -f package.xml
+sfdx package.xml:generate -j /tmp/fileproperties.json -f package.xml --apiversion 54.0
 sfdx force:source:retrieve -x package.xml -u acme-dev
 ```
 
