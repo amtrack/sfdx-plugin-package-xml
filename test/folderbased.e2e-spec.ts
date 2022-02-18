@@ -5,6 +5,10 @@ import FolderBasedMetadata from '../src/metadata-lister/folderbased';
 
 const expected = [
   'EmailFolder:unfiled$public',
+  'EmailTemplate:Bar/Baz_1645201301610',
+  'EmailTemplateFolder:Bar',
+  'EmailTemplateFolder:Foo',
+  'EmailTemplateFolder:unfiled$public',
   'Report:FooReports/FooAccountsClassicReport',
   'Report:FooReports/FooAccountsLightningReport_vgv',
   'Report:FooSubReports/FooAccountsSubLightningReport_kgv',

@@ -9,6 +9,9 @@ import MetadataLister from '../metadata-lister';
 
 export const FOLDER_BASED_METADATA_MAP = {
   EmailFolder: 'EmailTemplate',
+  // Attention: DescribeMetadataResult does not list EmailTemplateFolder (for Lightning Email Templates as Metadata Type)
+  // The only reference of EmailTemplateFolder is in the Metadata Coverage Report https://developer.salesforce.com/docs/metadata-coverage/54/EmailTemplateFolder/details
+  EmailTemplateFolder: 'EmailTemplate',
   DashboardFolder: 'Dashboard',
   DocumentFolder: 'Document',
   ReportFolder: 'Report'
