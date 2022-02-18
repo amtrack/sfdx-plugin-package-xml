@@ -33,7 +33,7 @@ Retrieve all Metadata from an org named `acme-dev` (a.k.a "Metadata Backup", a.k
 
 ```console
 sfdx force:mdapi:listallmetadata -f /tmp/fileproperties.json -u acme-dev
-sfdx package.xml:generate -j /tmp/fileproperties.json -f package.xml
+sfdx package.xml:generate -j /tmp/fileproperties.json -f package.xml --apiversion 54.0
 sfdx force:source:retrieve -x package.xml -u acme-dev
 ```
 
