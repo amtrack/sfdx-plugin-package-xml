@@ -25,7 +25,14 @@ sfdx force:mdapi:listallmetadata -h
 sfdx package.xml:generate -h
 ```
 
-Note: The first command is _force:mdapi:list**all**metadata_ compared to the official _force:mdapi:listmetadata_ command.
+> :warning: Note: The first command is similar to the official (`force:mdapi:listmetadata`) command.
+>
+> However our command lists Metadata for **ALL** Metadata Types.
+>
+> ```diff
+> -force:mdapi:listmetadata
+> +force:mdapi:listallmetadata
+> ```
 
 ## Use Cases
 
