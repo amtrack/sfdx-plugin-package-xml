@@ -21,6 +21,18 @@ const MANAGED_READONLY_TYPES = [
   'ApexPage'
 ];
 
+// parent types which don't have own properties
+const PURE_CONTAINER_TYPES = [
+  'AssignmentRules',
+  'AutoResponseRules',
+  'CustomLabels',
+  'EscalationRules',
+  'ManagedTopics',
+  'MatchingRules',
+  'SharingRules',
+  'Workflow'
+];
+
 const STANDARD_USERNAMES = ['Automated Process', 'salesforce.com'];
 
 export function isManaged(fileProperties: FileProperties): boolean {
@@ -75,4 +87,8 @@ export function isStandard(fileProperties: FileProperties): boolean {
       STANDARD_USERNAMES.includes(fileProperties.lastModifiedByName)) ||
     fileProperties.namespacePrefix === 'standard'
   );
+}
+
+export function isPureContainerType(fileProperties: FileProperties): boolean {
+  return PURE_CONTAINER_TYPES.includes(fileProperties.type);
 }

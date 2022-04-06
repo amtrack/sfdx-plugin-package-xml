@@ -175,6 +175,10 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
         }
       }
     }
+    if (this.flags.children) {
+      // omit parent types which don't have own properties
+      ignoreFunctions.push(filters.isPureContainerType);
+    }
     let fileProperties = await listAllMetadata(
       conn,
       this.flags,
