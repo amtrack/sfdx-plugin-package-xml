@@ -1,14 +1,14 @@
-import { flags, SfdxCommand } from '@salesforce/command';
-import { promises as fs } from 'fs';
+import { flags, SfdxCommand } from "@salesforce/command";
+import { promises as fs } from "fs";
 import {
   formatFileProperties,
   parseCommaSeparatedValues,
-  parseNewLineSeparatedValues
-} from '../../../cli';
-import * as filters from '../../../filters';
-import { listAllMetadata } from '../../../listallmetadata';
-import { ensureMetadataComponentPattern } from '../../../metadata-component';
-import getStdin = require('get-stdin');
+  parseNewLineSeparatedValues,
+} from "../../../cli";
+import * as filters from "../../../filters";
+import { listAllMetadata } from "../../../listallmetadata";
+import { ensureMetadataComponentPattern } from "../../../metadata-component";
+import getStdin = require("get-stdin");
 
 export default class MdapiListAllMetadataCommand extends SfdxCommand {
   public static description = `list all metadata components
@@ -50,120 +50,120 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
     Report:unfiled$public/flow_screen_prebuilt_report
     ReportFolder:unfiled$public
     ...
-`
+`,
   ];
 
   protected static requiresUsername = true;
 
   protected static flagsConfig = {
     resultfile: flags.filepath({
-      char: 'f',
-      description: 'path to the file where results are stored'
+      char: "f",
+      description: "path to the file where results are stored",
     }),
     regular: flags.boolean({
       description: `list regular metadata components (e.g. 'CustomObject')`,
       default: true,
-      allowNo: true
+      allowNo: true,
     }),
     folderbased: flags.boolean({
       description: `list folders and in-folder metadata components (e.g. 'Report', ReportFolder')`,
       default: true,
-      allowNo: true
+      allowNo: true,
     }),
     standardvaluesets: flags.boolean({
       description: `workaround to list StandardValueSets which are not returned when running 'sfdx force:mdapi:listmetadata -m StandardValueSet'`,
       default: true,
-      allowNo: true
+      allowNo: true,
     }),
     children: flags.boolean({
-      description: `list metadata components of child types (e.g. 'CustomField' children of 'CustomObject')`
+      description: `list metadata components of child types (e.g. 'CustomField' children of 'CustomObject')`,
     }),
     metadata: flags.string({
-      char: 'm',
+      char: "m",
       description: `comma-separated list of metadata component name expressions to list
-      Example: 'CustomObject:*,CustomField:Account.*'`
+      Example: 'CustomObject:*,CustomField:Account.*'`,
     }),
     ignore: flags.string({
-      char: 'i',
+      char: "i",
       description: `comma-separated list of metadata component name expressions to ignore
-      Example: 'InstalledPackage:*,Profile:*,Report:unfiled$public/*,CustomField:Account.*'`
+      Example: 'InstalledPackage:*,Profile:*,Report:unfiled$public/*,CustomField:Account.*'`,
     }),
     unlocked: flags.boolean({
       description: `list metadata components from Unlocked Packages`,
       default: null,
-      allowNo: true
+      allowNo: true,
     }),
     managed: flags.boolean({
       description: `list metadata components from Managed Packages`,
       default: null,
-      allowNo: true
+      allowNo: true,
     }),
     managedreadonly: flags.boolean({
       description: `list metadata components from Managed Packages that are readonly`,
       default: null,
-      allowNo: true
+      allowNo: true,
     }),
     managedwriteable: flags.boolean({
       description: `list metadata components from Managed Packages that are writeable`,
       default: null,
-      allowNo: true
+      allowNo: true,
     }),
     unmanaged: flags.boolean({
       description: `list metadata components which are not packaged`,
       default: null,
-      allowNo: true
+      allowNo: true,
     }),
     manageddeprecated: flags.boolean({
       description: `list metadata components which are managed but deprecated`,
       default: null,
-      allowNo: true
+      allowNo: true,
     }),
     unlockeddeprecated: flags.boolean({
       description: `list metadata components from Unlocked Packages that are deprecated`,
       default: null,
-      allowNo: true
+      allowNo: true,
     }),
     deprecated: flags.boolean({
       description: `list metadata components that are deprecated`,
       default: null,
-      allowNo: true
+      allowNo: true,
     }),
     standard: flags.boolean({
       description: `list metadata components like standard objects, settings,...`,
       default: null,
-      allowNo: true
+      allowNo: true,
     }),
     names: flags.boolean({
-      description: `output only component names (e.g. 'CustomObject:Account',...)`
+      description: `output only component names (e.g. 'CustomObject:Account',...)`,
     }),
     output: flags.string({
-      description: 'the output format',
-      default: 'json',
-      options: ['json', 'name', 'name-csv', 'xmlpath', 'xmlpath-csv']
-    })
+      description: "the output format",
+      default: "json",
+      options: ["json", "name", "name-csv", "xmlpath", "xmlpath-csv"],
+    }),
   };
 
   public async run(): Promise<any> {
     const conn = this.org.getConnection();
     let allowPatterns =
-      this.flags.metadata === '-'
+      this.flags.metadata === "-"
         ? parseNewLineSeparatedValues(await getStdin())
         : parseCommaSeparatedValues(this.flags.metadata);
-    allowPatterns = allowPatterns.length ? allowPatterns : ['*:*', '*:**/*'];
+    allowPatterns = allowPatterns.length ? allowPatterns : ["*:*", "*:**/*"];
     allowPatterns = allowPatterns.map(ensureMetadataComponentPattern);
     const ignorePatterns = parseCommaSeparatedValues(this.flags.ignore);
     const allowFunctions = [];
     const ignoreFunctions = [];
     const flag2FunctionName = {
-      unlocked: 'isUnlocked',
-      managed: 'isManaged',
-      managedreadonly: 'isManagedReadOnly',
-      unmanaged: 'isUnmanaged',
-      managedwriteable: 'isManagedWriteable',
-      manageddeprecated: 'isManagedDeprecated',
-      unlockeddeprecated: 'isUnlockedDeprecated',
-      deprecated: 'isDeprecated',
-      standard: 'isStandard'
+      unlocked: "isUnlocked",
+      managed: "isManaged",
+      managedreadonly: "isManagedReadOnly",
+      unmanaged: "isUnmanaged",
+      managedwriteable: "isManagedWriteable",
+      manageddeprecated: "isManagedDeprecated",
+      unlockeddeprecated: "isUnlockedDeprecated",
+      deprecated: "isDeprecated",
+      standard: "isStandard",
     };
     for (const filterFlag of Object.keys(flag2FunctionName)) {
       const functionName = flag2FunctionName[filterFlag];
@@ -199,14 +199,14 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
     }
     if (this.flags.names) {
       // backwards compatibility
-      this.flags.output = 'name';
+      this.flags.output = "name";
     }
-    if (this.flags.output === 'json') {
+    if (this.flags.output === "json") {
       if (this.flags.resultfile) {
         const fileData: string = JSON.stringify(fileProperties, null, 4);
         await fs.writeFile(this.flags.resultfile, fileData);
       } else {
-        this.ux.logJson(fileProperties);
+        this.ux.styledJSON(fileProperties);
       }
     } else {
       const output = formatFileProperties(fileProperties, this.flags.output);

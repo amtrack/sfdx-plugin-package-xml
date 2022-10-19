@@ -1,5 +1,5 @@
-import type { FileProperties } from 'jsforce';
-import { toMetadataComponentName } from './metadata-component';
+import type { FileProperties } from "jsforce/api/metadata";
+import { toMetadataComponentName } from "./metadata-component";
 
 export function parseCommaSeparatedValues(
   commaSeparatedMetadataComponentNames: string
@@ -7,7 +7,7 @@ export function parseCommaSeparatedValues(
   if (!commaSeparatedMetadataComponentNames) {
     return [];
   }
-  return clean(commaSeparatedMetadataComponentNames.split(','));
+  return clean(commaSeparatedMetadataComponentNames.split(","));
 }
 export function parseNewLineSeparatedValues(
   newLineSeparatedValues: string
@@ -27,11 +27,11 @@ export function formatFileProperties(
   outputType: string
 ): string {
   let mapFn;
-  if (outputType.startsWith('name')) {
+  if (outputType.startsWith("name")) {
     mapFn = toMetadataComponentName;
-  } else if (outputType.startsWith('xmlpath')) {
+  } else if (outputType.startsWith("xmlpath")) {
     mapFn = (fp) => fp.fileName;
   }
   const entries = fileProperties.map(mapFn).sort();
-  return outputType.endsWith('-csv') ? entries.join(',') : entries.join('\n');
+  return outputType.endsWith("-csv") ? entries.join(",") : entries.join("\n");
 }

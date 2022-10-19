@@ -1,28 +1,29 @@
 import {
   fixPersonAccountRecordTypes,
-  queryPersonAccountRecordTypes
-} from '@mdapi-issues/listmetadata-recordtype-personaccount';
+  queryPersonAccountRecordTypes,
+} from "@mdapi-issues/listmetadata-recordtype-personaccount";
+import { Connection } from "@salesforce/core";
 import type {
-  Connection,
   DescribeMetadataResult,
-  FileProperties
-} from 'jsforce';
-import { flatten } from 'lodash';
-import { listMetadataInChunks } from '../jsforce-utils';
-import MetadataLister from '../metadata-lister';
+  FileProperties,
+} from "jsforce/api/metadata";
+import { flatten } from "lodash";
+import { listMetadataInChunks } from "../jsforce-utils";
+import MetadataLister from "../metadata-lister";
 
 export default class ChildrenMetadata extends MetadataLister {
-  public static id = 'children';
+  public static id = "children";
   public async run(
     conn: Connection,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     describeMetadataResult: DescribeMetadataResult,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    fileProperties: Array<FileProperties>
+    fileProperties?: Array<FileProperties>
   ): Promise<Array<FileProperties>> {
-    const metadataTypesWithChildren = describeMetadataResult.metadataObjects.filter(
-      (metadataType) => metadataType.childXmlNames
-    );
+    const metadataTypesWithChildren =
+      describeMetadataResult.metadataObjects.filter(
+        (metadataType) => metadataType.childXmlNames
+      );
     const childMetadataTypes = flatten(
       metadataTypesWithChildren.map((type) => type.childXmlNames)
     );

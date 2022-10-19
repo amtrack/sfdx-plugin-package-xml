@@ -1,22 +1,22 @@
 import type {
-  Connection,
   DescribeMetadataResult,
-  FileProperties
-} from 'jsforce';
-import { match, ToStringFunction } from './match';
+  FileProperties,
+} from "jsforce/api/metadata";
+import type { Connection } from "@salesforce/core";
+import { match, ToStringFunction } from "./match";
 import {
   parseMetadataComponentName,
-  simplifyMetadataComponentPattern
-} from './metadata-component';
+  simplifyMetadataComponentPattern,
+} from "./metadata-component";
 
 export interface IMetadataLister {
   id: string;
   run: (
     conn: Connection,
-    describeMetadataResult: DescribeMetadataResult,
-    fileProperties: Array<FileProperties>,
-    allowPatterns: Array<string>,
-    ignorePatterns: Array<string>
+    describeMetadataResult?: DescribeMetadataResult,
+    fileProperties?: Array<FileProperties>,
+    allowPatterns?: Array<string>,
+    ignorePatterns?: Array<string>
   ) => Promise<Array<FileProperties>>;
 }
 
@@ -32,13 +32,13 @@ export default abstract class MetadataLister {
 
   abstract run(
     conn: Connection,
-    describeMetadataResult: DescribeMetadataResult,
-    fileProperties: Array<FileProperties>
+    describeMetadataResult?: DescribeMetadataResult,
+    fileProperties?: Array<FileProperties>
   ): Promise<Array<FileProperties>>;
 
   public filter(items: Array<any>, toString?: ToStringFunction): Array<any> {
     const [matched] = match(items, this.allowPatterns, toString, {
-      ignore: this.ignorePatterns
+      ignore: this.ignorePatterns,
     });
     return matched;
   }
@@ -56,7 +56,7 @@ export default abstract class MetadataLister {
       toString,
       {
         // ignore type only when the pattern is a wildcard for this type
-        ignore: this.ignorePatterns.map(simplifyMetadataComponentPattern)
+        ignore: this.ignorePatterns.map(simplifyMetadataComponentPattern),
       }
     );
     return matched;

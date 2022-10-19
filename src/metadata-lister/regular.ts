@@ -1,10 +1,10 @@
 import { addMissingNamespace } from '@mdapi-issues/listmetadata-installed-missing-namespaceprefix';
 import { fixNilType } from '@mdapi-issues/listmetadata-standardvaluesettranslation-type';
+import type { Connection } from "@salesforce/core";
 import type {
-  Connection,
   DescribeMetadataResult,
   FileProperties
-} from 'jsforce';
+} from "jsforce/api/metadata";
 import { listMetadataInChunks } from '../jsforce-utils';
 import MetadataLister from '../metadata-lister';
 
@@ -14,8 +14,6 @@ export default class RegularMetadata extends MetadataLister {
     conn: Connection,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     describeMetadataResult: DescribeMetadataResult,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    fileProperties: Array<FileProperties>
   ): Promise<Array<FileProperties>> {
     const metadataQueries = describeMetadataResult.metadataObjects.map(
       (cmp) => {

@@ -1,11 +1,12 @@
-import type { OutputFlags } from '@oclif/parser';
-import type { Connection, FileProperties } from 'jsforce';
-import { match } from './match';
-import { toMetadataComponentName } from './metadata-component';
-import ChildMetadataLister from './metadata-lister/children';
-import FolderBasedMetadataLister from './metadata-lister/folderbased';
-import RegularMetadataLister from './metadata-lister/regular';
-import StandardValueSetMetadataLister from './metadata-lister/standardvaluesets';
+import type { OutputFlags } from "@oclif/core/lib/interfaces";
+import type { Connection } from "@salesforce/core";
+import type { FileProperties } from "jsforce/api/metadata";
+import { match } from "./match";
+import { toMetadataComponentName } from "./metadata-component";
+import ChildMetadataLister from "./metadata-lister/children";
+import FolderBasedMetadataLister from "./metadata-lister/folderbased";
+import RegularMetadataLister from "./metadata-lister/regular";
+import StandardValueSetMetadataLister from "./metadata-lister/standardvaluesets";
 
 export async function listAllMetadata(
   conn: Connection,
@@ -18,7 +19,7 @@ export async function listAllMetadata(
     RegularMetadataLister,
     FolderBasedMetadataLister,
     StandardValueSetMetadataLister,
-    ChildMetadataLister
+    ChildMetadataLister,
   ];
   const result = [];
   for (const MetadataListerImplementation of metadataListers) {

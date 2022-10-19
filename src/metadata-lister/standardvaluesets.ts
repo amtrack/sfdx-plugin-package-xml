@@ -1,22 +1,17 @@
-import { listStandardValueSets } from '@mdapi-issues/listmetadata-standardvalueset';
+import { listStandardValueSets } from "@mdapi-issues/listmetadata-standardvalueset";
+import type { Connection } from "@salesforce/core";
 import type {
-  Connection,
-  DescribeMetadataResult,
   FileProperties
-} from 'jsforce';
-import MetadataLister from '../metadata-lister';
+} from "jsforce/api/metadata";
+import MetadataLister from "../metadata-lister";
 
 export default class StandardValueSetLister extends MetadataLister {
-  public static id = 'standardvaluesets';
+  public static id = "standardvaluesets";
   public async run(
     conn: Connection,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    describeMetadataResult: DescribeMetadataResult,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    fileProperties: Array<FileProperties>
   ): Promise<Array<FileProperties>> {
     const shouldRun =
-      this.filter(['StandardValueSet'], (x) => `${x}:`).length > 0;
+      this.filter(["StandardValueSet"], (x) => `${x}:`).length > 0;
     if (shouldRun) {
       return await listStandardValueSets(conn);
     } else {
