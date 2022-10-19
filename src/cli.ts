@@ -40,6 +40,9 @@ export function formatFileProperties(
 export async function getNonEmptyLinesFromFile(
   filePath: string
 ): Promise<string[]> {
+  if (!filePath) {
+    return [];
+  }
   const content = await readFile(filePath, "utf8");
   return (
     parseNewLineSeparatedValues(content)
@@ -51,6 +54,9 @@ export async function getNonEmptyLinesFromFile(
 export async function getNonEmptyLinesFromFiles(
   filePaths: string[]
 ): Promise<string[]> {
+  if (!filePaths) {
+    return [];
+  }
   const promises = filePaths.map((fp) => getNonEmptyLinesFromFile(fp));
   const results = await Promise.all(promises);
   return results.flat().filter(Boolean);
