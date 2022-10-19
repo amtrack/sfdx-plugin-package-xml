@@ -2,6 +2,7 @@ import { flags, SfdxCommand } from "@salesforce/command";
 import { promises as fs } from "fs";
 import {
   formatFileProperties,
+  getNonEmptyLinesFromFiles,
   parseCommaSeparatedValues,
   parseNewLineSeparatedValues,
 } from "../../../cli";
@@ -88,6 +89,10 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
       description: `comma-separated list of metadata component name expressions to ignore
       Example: 'InstalledPackage:*,Profile:*,Report:unfiled$public/*,CustomField:Account.*'`,
     }),
+    ignorefile: flags.filepath({
+      description: `same as --ignore, but instead read from a file containing one ignore pattern per line`,
+      multiple: true
+    }),
     unlocked: flags.boolean({
       description: `list metadata components from Unlocked Packages`,
       default: null,
@@ -151,7 +156,10 @@ export default class MdapiListAllMetadataCommand extends SfdxCommand {
         : parseCommaSeparatedValues(this.flags.metadata);
     allowPatterns = allowPatterns.length ? allowPatterns : ["*:*", "*:**/*"];
     allowPatterns = allowPatterns.map(ensureMetadataComponentPattern);
-    const ignorePatterns = parseCommaSeparatedValues(this.flags.ignore);
+    const ignorePatterns = [
+      ...(await getNonEmptyLinesFromFiles(this.flags.ignorefile)),
+      ...parseCommaSeparatedValues(this.flags.ignore)
+    ];
     const allowFunctions = [];
     const ignoreFunctions = [];
     const flag2FunctionName = {
