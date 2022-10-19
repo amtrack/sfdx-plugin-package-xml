@@ -1,35 +1,26 @@
-import type {
-  Connection,
-  DescribeMetadataResult,
-  FileProperties
-} from 'jsforce';
-import { listMetadataInChunks } from '../jsforce-utils';
-import { toMetadataComponentName } from '../metadata-component';
-import MetadataLister from '../metadata-lister';
+import type { Connection } from "@salesforce/core";
+import type { FileProperties } from "jsforce/api/metadata";
+import { listMetadataInChunks } from "../jsforce-utils";
+import { toMetadataComponentName } from "../metadata-component";
+import MetadataLister from "../metadata-lister";
 
 export const FOLDER_BASED_METADATA_MAP = {
-  EmailFolder: 'EmailTemplate',
+  EmailFolder: "EmailTemplate",
   // Attention: DescribeMetadataResult does not list EmailTemplateFolder (for Lightning Email Templates as Metadata Type)
   // The only reference of EmailTemplateFolder is in the Metadata Coverage Report https://developer.salesforce.com/docs/metadata-coverage/54/EmailTemplateFolder/details
-  EmailTemplateFolder: 'EmailTemplate',
-  DashboardFolder: 'Dashboard',
-  DocumentFolder: 'Document',
-  ReportFolder: 'Report'
+  EmailTemplateFolder: "EmailTemplate",
+  DashboardFolder: "Dashboard",
+  DocumentFolder: "Document",
+  ReportFolder: "Report",
 };
 
 export default class FolderBasedMetadata extends MetadataLister {
-  public static id = 'folderbased';
-  public async run(
-    conn: Connection,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    describeMetadataResult: DescribeMetadataResult,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    fileProperties: Array<FileProperties>
-  ): Promise<Array<FileProperties>> {
+  public static id = "folderbased";
+  public async run(conn: Connection): Promise<Array<FileProperties>> {
     const folderTypes = Object.keys(FOLDER_BASED_METADATA_MAP);
     const folderQueries = folderTypes.map((folderType) => {
       return {
-        type: folderType
+        type: folderType,
       };
     });
     const filteredFolderQueries = this.filterTypes(
@@ -44,7 +35,7 @@ export default class FolderBasedMetadata extends MetadataLister {
     const inFolderQueries = filteredFolders.map((folder) => {
       return {
         type: FOLDER_BASED_METADATA_MAP[folder.type],
-        folder: folder.fullName
+        folder: folder.fullName,
       };
     });
     const inFolderFileProperties = await listMetadataInChunks(

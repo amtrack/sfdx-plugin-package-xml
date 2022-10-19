@@ -1,5 +1,7 @@
-import type { Connection, FileProperties, ListMetadataQuery } from 'jsforce';
-import { chunk } from 'lodash';
+import type { Connection } from "@salesforce/core";
+import type { FileProperties, ListMetadataQuery } from "jsforce/api/metadata";
+
+import { chunk } from "lodash";
 
 /**
  * workaround as the Metadata API (converted from XML) returns an object instead of an array of length 1

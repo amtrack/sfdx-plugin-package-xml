@@ -8,44 +8,33 @@
     "sfdx-plugin-package-xml": "bin/run"
   },
   "dependencies": {
-    "@mdapi-issues/listmetadata-installed-missing-namespaceprefix": "2.0.1",
-    "@mdapi-issues/listmetadata-recordtype-personaccount": "2.0.1",
-    "@mdapi-issues/listmetadata-standardvalueset": "2.0.2",
-    "@mdapi-issues/listmetadata-standardvaluesettranslation-type": "2.0.1",
-    "@salesforce/command": "4.2.1",
+    "@mdapi-issues/listmetadata-installed-missing-namespaceprefix": "2.0.2",
+    "@mdapi-issues/listmetadata-recordtype-personaccount": "2.0.2",
+    "@mdapi-issues/listmetadata-standardvalueset": "2.0.3",
+    "@mdapi-issues/listmetadata-standardvaluesettranslation-type": "2.0.2",
+    "@salesforce/command": "5.2.13",
     "get-stdin": "8.0.0",
     "lodash": "4.17.21",
     "picomatch": "2.3.1",
-    "tslib": "2.3.1"
+    "tslib": "2.4.0"
   },
   "devDependencies": {
-    "@oclif/dev-cli": "1.26.10",
-    "@oclif/plugin-help": "5.1.10",
-    "@salesforce/dev-config": "3.0.0",
-    "@types/chai": "4.3.0",
-    "@types/mocha": "9.1.0",
-    "@types/node": "14.18.9",
-    "@typescript-eslint/eslint-plugin": "5.10.1",
-    "@typescript-eslint/parser": "5.10.1",
-    "chai": "4.3.4",
-    "eslint": "8.7.0",
-    "eslint-config-prettier": "8.3.0",
-    "mocha": "9.1.4",
+    "@types/chai": "4.3.3",
+    "@types/mocha": "10.0.0",
+    "chai": "4.3.6",
+    "mocha": "10.1.0",
     "nyc": "15.1.0",
-    "prettier": "2.5.1",
-    "sfdx-cli": "7.136.2",
-    "ts-node": "10.4.0",
-    "typescript": "4.5.5"
+    "oclif": "3.2.19",
+    "ts-node": "10.9.1",
+    "typescript": "4.8.4"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=14.16"
   },
   "files": [
     "/bin",
     "/lib",
-    "/messages",
-    "/oclif.manifest.json",
-    "/yarn.lock"
+    "/oclif.manifest.json"
   ],
   "homepage": "https://github.com/amtrack/sfdx-plugin-package-xml",
   "keywords": [
@@ -66,8 +55,8 @@
         "description": "explore metadata in an org and generate a package.xml manifest"
       }
     },
-    "devPlugins": [
-      "@oclif/plugin-help"
+    "additionalHelpFlags": [
+      "-h"
     ],
     "repositoryPrefix": "<%- repo %>/blob/main/<%- commandPath %>"
   },
@@ -83,16 +72,11 @@
   },
   "repository": "amtrack/sfdx-plugin-package-xml",
   "scripts": {
-    "build": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "build": "rm -rf lib && tsc -p . && oclif manifest",
     "develop": "bash scripts/develop.sh",
-    "format": "prettier --write 'src/**/*.ts' 'test/**/*.ts'",
-    "lint": "eslint 'src/**/*.ts' 'test/**/*.ts'",
-    "postpack": "rm -f oclif.manifest.json",
-    "posttest": "yarn lint",
     "prepack": "yarn build",
     "prepare": "yarn build",
-    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
-    "test:e2e": "mocha --forbid-only \"test/**/*.e2e-spec.ts\"",
-    "version": "oclif-dev readme && git add README.md"
+    "test": "nyc --reporter=lcov --reporter=text mocha --require ts-node/register \"test/**/*.test.ts\"",
+    "test:e2e": "mocha --require ts-node/register \"test/**/*.e2e-spec.ts\""
   }
 }
