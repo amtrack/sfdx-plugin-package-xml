@@ -1,0 +1,2 @@
+ApexClass:Min
+ApexPage:Min

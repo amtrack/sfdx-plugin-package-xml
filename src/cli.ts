@@ -1,3 +1,4 @@
+import { readFile } from "fs/promises";
 import type { FileProperties } from "jsforce/api/metadata";
 import { toMetadataComponentName } from "./metadata-component";
 
@@ -34,4 +35,23 @@ export function formatFileProperties(
   }
   const entries = fileProperties.map(mapFn).sort();
   return outputType.endsWith("-csv") ? entries.join(",") : entries.join("\n");
+}
+
+export async function getNonEmptyLinesFromFile(
+  filePath: string
+): Promise<string[]> {
+  const content = await readFile(filePath, "utf8");
+  return (
+    parseNewLineSeparatedValues(content)
+      // ignore comments
+      .filter((x) => !x.startsWith("#"))
+  );
+}
+
+export async function getNonEmptyLinesFromFiles(
+  filePaths: string[]
+): Promise<string[]> {
+  const promises = filePaths.map((fp) => getNonEmptyLinesFromFile(fp));
+  const results = await Promise.all(promises);
+  return results.flat().filter(Boolean);
 }

@@ -1,6 +1,9 @@
 import { flags, SfdxCommand } from '@salesforce/command';
 import { promises as fs } from 'fs';
-import { parseCommaSeparatedValues } from '../../cli';
+import {
+  getNonEmptyLinesFromFiles,
+  parseCommaSeparatedValues
+} from '../../cli';
 import { match } from '../../match';
 import { toMetadataComponentName } from '../../metadata-component';
 import PackageXml from '../../package-xml';
@@ -58,9 +61,10 @@ export default class PackageXmlGenerateCommand extends SfdxCommand {
       description: `comma-separated list of metadata component name expressions to ignore
       Example: 'InstalledPackage:*,Profile:*,Report:unfiled$public/*,CustomField:Account.*'`
     }),
-    // ignorefile: flags.filepath({
-    //   description: `same as --ignore, just one ignore pattern per line in a file`
-    // }),
+    ignorefile: flags.filepath({
+      description: `same as --ignore, but instead read from a file containing one ignore pattern per line`,
+      multiple: true
+    }),
     defaultignore: flags.array({
       description: 'ignored by default, to disable use --defaultignore ""',
       default: ['InstalledPackage:*']
@@ -82,13 +86,11 @@ export default class PackageXmlGenerateCommand extends SfdxCommand {
     if (this.flags.apiversion) {
       meta['version'] = this.flags.apiversion;
     }
-    const ignorePatterns = [];
-    if (this.flags.ignore) {
-      ignorePatterns.push(...parseCommaSeparatedValues(this.flags.ignore));
-    }
-    if (this.flags.defaultignore) {
-      ignorePatterns.push(...this.flags.defaultignore);
-    }
+    const ignorePatterns = [
+      ...(await getNonEmptyLinesFromFiles(this.flags.ignorefile)),
+      ...parseCommaSeparatedValues(this.flags.ignore),
+      ...this.flags.defaultignore
+    ];
     const [, keep] = match(
       fileProperties,
       ignorePatterns,
