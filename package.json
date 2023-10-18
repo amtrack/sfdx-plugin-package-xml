@@ -19,9 +19,9 @@
     "tslib": "2.4.0"
   },
   "devDependencies": {
-    "@types/chai": "4.3.5",
+    "@types/chai": "4.3.9",
     "@types/mocha": "10.0.1",
-    "chai": "4.3.7",
+    "chai": "4.3.10",
     "mocha": "10.2.0",
     "nyc": "15.1.0",
     "oclif": "3.2.24",
