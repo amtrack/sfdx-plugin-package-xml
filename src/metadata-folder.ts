@@ -1,9 +1,9 @@
 export const FOLDER_BASED_METADATA_MAP = {
-  EmailFolder: 'EmailTemplate',
-  EmailTemplateFolder: 'EmailTemplate',
-  DashboardFolder: 'Dashboard',
-  DocumentFolder: 'Document',
-  ReportFolder: 'Report'
+  EmailFolder: "EmailTemplate",
+  EmailTemplateFolder: "EmailTemplate",
+  DashboardFolder: "Dashboard",
+  DocumentFolder: "Document",
+  ReportFolder: "Report",
 };
 
 /**

@@ -2,31 +2,24 @@ import { readFile } from "fs/promises";
 import type { FileProperties } from "jsforce/api/metadata";
 import { toMetadataComponentName } from "./metadata-component";
 
-export function parseCommaSeparatedValues(
-  commaSeparatedMetadataComponentNames: string
-): Array<string> {
+export function parseCommaSeparatedValues(commaSeparatedMetadataComponentNames?: string): string[] {
   if (!commaSeparatedMetadataComponentNames) {
     return [];
   }
   return clean(commaSeparatedMetadataComponentNames.split(","));
 }
-export function parseNewLineSeparatedValues(
-  newLineSeparatedValues: string
-): Array<string> {
+export function parseNewLineSeparatedValues(newLineSeparatedValues: string): string[] {
   if (!newLineSeparatedValues) {
     return [];
   }
   return clean(newLineSeparatedValues.split(/\r?\n/));
 }
 
-function clean(values: Array<string>) {
+function clean(values: string[]) {
   return values.map((x) => x.trim()).filter(Boolean);
 }
 
-export function formatFileProperties(
-  fileProperties: Array<FileProperties>,
-  outputType: string
-): string {
+export function formatFileProperties(fileProperties: FileProperties[], outputType: string): string {
   let mapFn;
   if (outputType.startsWith("name")) {
     mapFn = toMetadataComponentName;
@@ -37,9 +30,7 @@ export function formatFileProperties(
   return outputType.endsWith("-csv") ? entries.join(",") : entries.join("\n");
 }
 
-export async function getNonEmptyLinesFromFile(
-  filePath: string
-): Promise<string[]> {
+export async function getNonEmptyLinesFromFile(filePath: string): Promise<string[]> {
   if (!filePath) {
     return [];
   }
@@ -51,9 +42,7 @@ export async function getNonEmptyLinesFromFile(
   );
 }
 
-export async function getNonEmptyLinesFromFiles(
-  filePaths: string[]
-): Promise<string[]> {
+export async function getNonEmptyLinesFromFiles(filePaths?: string[]): Promise<string[]> {
   if (!filePaths) {
     return [];
   }

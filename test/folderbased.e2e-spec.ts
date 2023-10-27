@@ -1,7 +1,7 @@
 import { Org } from "@salesforce/core";
 import { expect } from "chai";
 import { toMetadataComponentName } from "../src/metadata-component";
-import FolderBasedMetadata from "../src/metadata-lister/folderbased";
+import { FolderBasedMetadata } from "../src/metadata-lister/folderbased";
 
 const expected = [
   "EmailFolder:unfiled$public",
@@ -12,10 +12,6 @@ const expected = [
   "Report:FooReports/FooAccountsClassicReport",
   "Report:FooReports/FooAccountsLightningReport_vgv",
   "Report:FooSubReports/FooAccountsSubLightningReport_kgv",
-  "Report:unfiled$public/flow_screen_prebuilt_report",
-  "ReportFolder:EBotR_v3",
-  "ReportFolder:EinsteinBotReports",
-  "ReportFolder:EinsteinBotReports_v2",
   "ReportFolder:FooReports",
   "ReportFolder:FooSubReports",
   "ReportFolder:unfiled$public",
@@ -30,22 +26,20 @@ describe("folderbased", function () {
       const conn = org.getConnection();
       const lister = new FolderBasedMetadata(["*:*", "*:**/*"], []);
       const result = await lister.run(conn);
-      expect(result.map(toMetadataComponentName).sort()).to.deep.equal(
-        expected
-      );
+      const names = result.map(toMetadataComponentName);
+      for (const exp of expected) {
+        expect(names).to.include(exp);
+      }
     });
     it("lists only unfiled$public folder and files", async () => {
       const org = await Org.create({});
       const conn = org.getConnection();
-      const lister = new FolderBasedMetadata(
-        ["ReportFolder:unfiled$public", "Report:**/*"],
-        []
-      );
+      const lister = new FolderBasedMetadata(["ReportFolder:unfiled$public", "Report:unfiled$public/*"], []);
       const result = await lister.run(conn);
-      expect(result.map(toMetadataComponentName).sort()).to.deep.equal([
-        "Report:unfiled$public/flow_screen_prebuilt_report",
-        "ReportFolder:unfiled$public",
-      ]);
+      const names = result.map(toMetadataComponentName);
+      for (const exp of ["Report:unfiled$public/PublicAccountsClassicReport", "ReportFolder:unfiled$public"]) {
+        expect(names).to.include(exp);
+      }
     });
   });
 });

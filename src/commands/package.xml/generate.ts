@@ -1,18 +1,21 @@
-import { flags, SfdxCommand } from '@salesforce/command';
-import { promises as fs } from 'fs';
 import {
-  getNonEmptyLinesFromFiles,
-  parseCommaSeparatedValues
-} from '../../cli';
-import { match } from '../../match';
-import { toMetadataComponentName } from '../../metadata-component';
-import PackageXml from '../../package-xml';
+  Flags,
+  SfCommand,
+  requiredOrgFlagWithDeprecations,
+  orgApiVersionFlagWithDeprecations,
+} from "@salesforce/sf-plugins-core";
+import { promises as fs } from "fs";
+import { getNonEmptyLinesFromFiles, parseCommaSeparatedValues } from "../../cli";
+import { match } from "../../match";
+import { toMetadataComponentName } from "../../metadata-component";
+import { PackageXml } from "../../package-xml";
 
-export default class PackageXmlGenerateCommand extends SfdxCommand {
-  public static description = `generate a package.xml manifest based on the force:mdapi:listallmetadata output`;
-  public static examples = [
+export class PackageXmlGenerateCommand extends SfCommand<any> {
+  public static readonly summary = `generate a package.xml manifest based on the force:mdapi:listallmetadata output`;
+  public static readonly description = `generate a package.xml manifest based on the force:mdapi:listallmetadata output`;
+  public static readonly examples = [
     `generate and output a package.xml manifest based on the force:mdapi:listallmetadata result
-    $ sfdx <%= command.id %> --inputfile /tmp/fileproperties.json
+    $ <%= config.bin %> <%= command.id %> --inputfile /tmp/fileproperties.json
     <?xml version="1.0" encoding="UTF-8"?>
     <Package xmlns="http://soap.sforce.com/2006/04/metadata">
         <types>
@@ -41,66 +44,60 @@ export default class PackageXmlGenerateCommand extends SfdxCommand {
         </types>
         <version>50.0</version>
     </Package>
-`
+`,
   ];
 
-  protected static requiresUsername = false;
-
-  protected static flagsConfig = {
-    inputfile: flags.filepath({
-      char: 'j',
-      description: 'path to a file with fileproperties in JSON Array format',
-      required: true
+  public static readonly flags = {
+    "target-org": requiredOrgFlagWithDeprecations,
+    inputfile: Flags.file({
+      char: "j",
+      summary: "path to a file with fileproperties in JSON Array format",
+      required: true,
     }),
-    resultfile: flags.filepath({
-      char: 'f',
-      description: 'path to the generated package.xml file'
+    resultfile: Flags.file({
+      char: "f",
+      summary: "path to the generated package.xml file",
     }),
-    ignore: flags.string({
-      char: 'i',
-      description: `comma-separated list of metadata component name expressions to ignore
-      Example: 'InstalledPackage:*,Profile:*,Report:unfiled$public/*,CustomField:Account.*'`
+    ignore: Flags.string({
+      char: "i",
+      summary: `comma-separated list of metadata component name expressions to ignore
+      Example: 'InstalledPackage:*,Profile:*,Report:unfiled$public/*,CustomField:Account.*'`,
     }),
-    ignorefile: flags.filepath({
-      description: `same as --ignore, but instead read from a file containing one ignore pattern per line`,
-      multiple: true
+    ignorefile: Flags.file({
+      summary: `same as --ignore, but instead read from a file containing one ignore pattern per line`,
+      multiple: true,
     }),
-    defaultignore: flags.array({
-      description: 'ignored by default, to disable use --defaultignore ""',
-      default: ['InstalledPackage:*']
+    defaultignore: Flags.string({
+      summary: 'ignored by default, to disable use --defaultignore ""',
+      default: "InstalledPackage:*",
     }),
-    apiversion: flags.builtin()
+    "api-version": orgApiVersionFlagWithDeprecations,
   };
 
   public async run(): Promise<any> {
+    const { flags } = await this.parse(PackageXmlGenerateCommand);
     let fileProperties;
     try {
-      const buf = await fs.readFile(this.flags.inputfile);
+      const buf = await fs.readFile(flags.inputfile);
       fileProperties = JSON.parse(buf.toString());
     } catch (e) {
-      throw new Error(
-        `Could not parse inputfile at path ${this.flags.inputfile}`
-      );
+      throw new Error(`Could not parse inputfile at path ${flags.inputfile}`);
     }
     const meta = {};
-    if (this.flags.apiversion) {
-      meta['version'] = this.flags.apiversion;
+    if (flags.apiversion) {
+      meta["version"] = flags.apiversion;
     }
     const ignorePatterns = [
-      ...(await getNonEmptyLinesFromFiles(this.flags.ignorefile)),
-      ...parseCommaSeparatedValues(this.flags.ignore),
-      ...this.flags.defaultignore
+      ...(await getNonEmptyLinesFromFiles(flags.ignorefile)),
+      ...parseCommaSeparatedValues(flags.ignore),
+      ...parseCommaSeparatedValues(flags.defaultignore),
     ];
-    const [, keep] = match(
-      fileProperties,
-      ignorePatterns,
-      toMetadataComponentName
-    );
+    const [, keep] = match(fileProperties, ignorePatterns, toMetadataComponentName);
     const packageXml = new PackageXml(keep, meta).toString();
-    if (this.flags.resultfile) {
-      await fs.writeFile(this.flags.resultfile, packageXml);
+    if (flags.resultfile) {
+      await fs.writeFile(flags.resultfile, packageXml);
     } else {
-      this.ux.log(packageXml);
+      this.log(packageXml);
     }
     return;
   }

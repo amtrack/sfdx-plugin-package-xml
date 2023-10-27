@@ -363,17 +363,8 @@
   ],
   "label": "Account",
   "searchLayouts": {
-    "customTabListAdditionalFields": [
-      "ACCOUNT.NAME",
-      "ACCOUNT.ADDRESS1_CITY",
-      "ACCOUNT.PHONE1"
-    ],
-    "lookupDialogsAdditionalFields": [
-      "ACCOUNT.NAME",
-      "ACCOUNT.SITE",
-      "CORE.USERS.ALIAS",
-      "ACCOUNT.TYPE"
-    ],
+    "customTabListAdditionalFields": ["ACCOUNT.NAME", "ACCOUNT.ADDRESS1_CITY", "ACCOUNT.PHONE1"],
+    "lookupDialogsAdditionalFields": ["ACCOUNT.NAME", "ACCOUNT.SITE", "CORE.USERS.ALIAS", "ACCOUNT.TYPE"],
     "lookupPhoneDialogsAdditionalFields": [
       "ACCOUNT.NAME",
       "ACCOUNT.SITE",
@@ -381,12 +372,7 @@
       "ACCOUNT.TYPE",
       "ACCOUNT.PHONE1"
     ],
-    "searchResultsAdditionalFields": [
-      "ACCOUNT.NAME",
-      "ACCOUNT.SITE",
-      "ACCOUNT.PHONE1",
-      "CORE.USERS.ALIAS"
-    ]
+    "searchResultsAdditionalFields": ["ACCOUNT.NAME", "ACCOUNT.SITE", "ACCOUNT.PHONE1", "CORE.USERS.ALIAS"]
   },
   "sharingModel": "ReadWrite"
 }

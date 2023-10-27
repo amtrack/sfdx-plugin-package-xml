@@ -40,17 +40,11 @@ export function isManaged(fileProperties: FileProperties): boolean {
 }
 
 export function isManagedReadOnly(fileProperties: FileProperties): boolean {
-  return (
-    MANAGED_READONLY_TYPES.includes(fileProperties.type) &&
-    isManaged(fileProperties)
-  );
+  return MANAGED_READONLY_TYPES.includes(fileProperties.type) && isManaged(fileProperties);
 }
 
 export function isManagedWriteable(fileProperties: FileProperties): boolean {
-  return (
-    !MANAGED_READONLY_TYPES.includes(fileProperties.type) &&
-    isManaged(fileProperties)
-  );
+  return !MANAGED_READONLY_TYPES.includes(fileProperties.type) && isManaged(fileProperties);
 }
 
 export function isUnlocked(fileProperties: FileProperties): boolean {
@@ -58,10 +52,7 @@ export function isUnlocked(fileProperties: FileProperties): boolean {
 }
 
 export function isUnmanaged(fileProperties: FileProperties): boolean {
-  return (
-    fileProperties.manageableState === "unmanaged" ||
-    fileProperties.manageableState === undefined
-  );
+  return fileProperties.manageableState === "unmanaged" || fileProperties.manageableState === undefined;
 }
 
 export function isUnlockedDeprecated(fileProperties: FileProperties): boolean {
@@ -73,16 +64,12 @@ export function isManagedDeprecated(fileProperties: FileProperties): boolean {
 }
 
 export function isDeprecated(fileProperties: FileProperties): boolean {
-  return (
-    isUnlockedDeprecated(fileProperties) || isManagedDeprecated(fileProperties)
-  );
+  return isUnlockedDeprecated(fileProperties) || isManagedDeprecated(fileProperties);
 }
 
 export function isStandard(fileProperties: FileProperties): boolean {
   return (
-    (!fileProperties.namespacePrefix &&
-      !fileProperties.manageableState &&
-      !fileProperties.id) ||
+    (!fileProperties.namespacePrefix && !fileProperties.manageableState && !fileProperties.id) ||
     (STANDARD_USERNAMES.includes(fileProperties.createdByName) &&
       STANDARD_USERNAMES.includes(fileProperties.lastModifiedByName)) ||
     fileProperties.namespacePrefix === "standard"
