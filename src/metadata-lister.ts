@@ -1,31 +1,25 @@
-import type {
-  DescribeMetadataResult,
-  FileProperties,
-} from "jsforce/api/metadata";
+import type { DescribeMetadataResult, FileProperties } from "jsforce/api/metadata";
 import type { Connection } from "@salesforce/core";
 import { match, ToStringFunction } from "./match";
-import {
-  parseMetadataComponentName,
-  simplifyMetadataComponentPattern,
-} from "./metadata-component";
+import { parseMetadataComponentName, simplifyMetadataComponentPattern } from "./metadata-component";
 
 export interface IMetadataLister {
   id: string;
   run: (
     conn: Connection,
     describeMetadataResult?: DescribeMetadataResult,
-    fileProperties?: Array<FileProperties>,
-    allowPatterns?: Array<string>,
-    ignorePatterns?: Array<string>
-  ) => Promise<Array<FileProperties>>;
+    fileProperties?: FileProperties[],
+    allowPatterns?: string[],
+    ignorePatterns?: string[],
+  ) => Promise<FileProperties[]>;
 }
 
-export default abstract class MetadataLister {
+export abstract class MetadataLister {
   public static id: string;
-  private allowPatterns: Array<string>;
-  private ignorePatterns: Array<string>;
+  private allowPatterns: string[];
+  private ignorePatterns: string[];
 
-  constructor(allowPatterns: Array<string>, ignorePatterns: Array<string>) {
+  constructor(allowPatterns: string[], ignorePatterns: string[]) {
     this.allowPatterns = allowPatterns;
     this.ignorePatterns = ignorePatterns;
   }
@@ -33,31 +27,26 @@ export default abstract class MetadataLister {
   abstract run(
     conn: Connection,
     describeMetadataResult?: DescribeMetadataResult,
-    fileProperties?: Array<FileProperties>
-  ): Promise<Array<FileProperties>>;
+    fileProperties?: FileProperties[],
+  ): Promise<FileProperties[]>;
 
-  public filter(items: Array<any>, toString?: ToStringFunction): Array<any> {
+  public filter(items: any[], toString?: ToStringFunction): any[] {
     const [matched] = match(items, this.allowPatterns, toString, {
       ignore: this.ignorePatterns,
     });
     return matched;
   }
 
-  public filterTypes(
-    items: Array<any>,
-    toString?: ToStringFunction
-  ): Array<any> {
+  public filterTypes(items: any[], toString?: ToStringFunction): any[] {
     const [matched] = match(
       items,
       // allow type when the pattern contains the type
-      this.allowPatterns.map(
-        (pattern) => parseMetadataComponentName(pattern).type
-      ),
+      this.allowPatterns.map((pattern) => parseMetadataComponentName(pattern).type),
       toString,
       {
         // ignore type only when the pattern is a wildcard for this type
         ignore: this.ignorePatterns.map(simplifyMetadataComponentPattern),
-      }
+      },
     );
     return matched;
   }

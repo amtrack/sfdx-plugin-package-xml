@@ -2,7 +2,7 @@ import type { Connection } from "@salesforce/core";
 import type { FileProperties } from "jsforce/api/metadata";
 import { listMetadataInChunks } from "../jsforce-utils";
 import { toMetadataComponentName } from "../metadata-component";
-import MetadataLister from "../metadata-lister";
+import { MetadataLister } from "../metadata-lister";
 
 export const FOLDER_BASED_METADATA_MAP = {
   EmailFolder: "EmailTemplate",
@@ -14,19 +14,16 @@ export const FOLDER_BASED_METADATA_MAP = {
   ReportFolder: "Report",
 };
 
-export default class FolderBasedMetadata extends MetadataLister {
+export class FolderBasedMetadata extends MetadataLister {
   public static id = "folderbased";
-  public async run(conn: Connection): Promise<Array<FileProperties>> {
+  public async run(conn: Connection): Promise<FileProperties[]> {
     const folderTypes = Object.keys(FOLDER_BASED_METADATA_MAP);
     const folderQueries = folderTypes.map((folderType) => {
       return {
         type: folderType,
       };
     });
-    const filteredFolderQueries = this.filterTypes(
-      folderQueries,
-      (x) => `${x.type}`
-    );
+    const filteredFolderQueries = this.filterTypes(folderQueries, (x) => `${x.type}`);
     const folders = await listMetadataInChunks(conn, filteredFolderQueries);
     // NOTE: To pre-filter (allow or ignore) Reports in a certain folder,
     // please use the expression `ReportFolder:unfiled$public`
@@ -38,10 +35,7 @@ export default class FolderBasedMetadata extends MetadataLister {
         folder: folder.fullName,
       };
     });
-    const inFolderFileProperties = await listMetadataInChunks(
-      conn,
-      inFolderQueries
-    );
+    const inFolderFileProperties = await listMetadataInChunks(conn, inFolderQueries);
     return [...filteredFolders, ...inFolderFileProperties];
   }
 }

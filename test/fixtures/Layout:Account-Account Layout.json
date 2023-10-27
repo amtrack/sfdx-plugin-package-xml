@@ -1,10 +1,7 @@
 {
   "fullName": "Account-Account Layout",
   "emailDefault": "false",
-  "headers": [
-    "PersonalTagging",
-    "PublicTagging"
-  ],
+  "headers": ["PersonalTagging", "PublicTagging"],
   "layoutSections": [
     {
       "customLabel": "false",
@@ -113,10 +110,7 @@
       "detailHeading": "false",
       "editHeading": "true",
       "label": "Additional Information",
-      "layoutColumns": [
-        "",
-        ""
-      ],
+      "layoutColumns": ["", ""],
       "style": "TwoColumnsLeftToRight"
     },
     {
@@ -157,11 +151,7 @@
       "customLabel": "false",
       "detailHeading": "false",
       "editHeading": "false",
-      "layoutColumns": [
-        "",
-        "",
-        ""
-      ],
+      "layoutColumns": ["", "", ""],
       "style": "CustomLinks"
     }
   ],
@@ -220,21 +210,11 @@
   },
   "relatedLists": [
     {
-      "fields": [
-        "FULL_NAME",
-        "CONTACT.TITLE",
-        "CONTACT.EMAIL",
-        "CONTACT.PHONE1"
-      ],
+      "fields": ["FULL_NAME", "CONTACT.TITLE", "CONTACT.EMAIL", "CONTACT.PHONE1"],
       "relatedList": "RelatedContactList"
     },
     {
-      "fields": [
-        "OPPORTUNITY.NAME",
-        "OPPORTUNITY.STAGE_NAME",
-        "OPPORTUNITY.AMOUNT",
-        "OPPORTUNITY.CLOSE_DATE"
-      ],
+      "fields": ["OPPORTUNITY.NAME", "OPPORTUNITY.STAGE_NAME", "OPPORTUNITY.AMOUNT", "OPPORTUNITY.CLOSE_DATE"],
       "relatedList": "RelatedOpportunityList"
     },
     {
@@ -278,11 +258,7 @@
       "relatedList": "RelatedNoteList"
     },
     {
-      "fields": [
-        "ACCOUNT.NAME",
-        "OPPORTUNITY.NAME",
-        "PARTNER.ROLE"
-      ],
+      "fields": ["ACCOUNT.NAME", "OPPORTUNITY.NAME", "PARTNER.ROLE"],
       "relatedList": "RelatedPartnerList"
     }
   ],

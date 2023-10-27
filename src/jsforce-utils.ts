@@ -9,8 +9,8 @@ import { chunk } from "lodash";
  */
 export function ensureArray(
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  prop: any
-): Array<any> {
+  prop: any,
+): any[] {
   if (Array.isArray(prop)) {
     return prop;
   }
@@ -25,12 +25,9 @@ export function ensureArray(
  * @param conn jsforce Connection
  * @param queries list of queries
  */
-export async function listMetadataInChunks(
-  conn: Connection,
-  queries: Array<ListMetadataQuery>
-): Promise<Array<FileProperties>> {
+export async function listMetadataInChunks(conn: Connection, queries: ListMetadataQuery[]): Promise<FileProperties[]> {
   const CHUNK_SIZE = 3;
-  const result = [];
+  const result: FileProperties[] = [];
   for (const chunkOfQueries of chunk(queries, CHUNK_SIZE)) {
     const chunkOfMetadataComponents = await conn.metadata.list(chunkOfQueries);
     if (chunkOfMetadataComponents) {

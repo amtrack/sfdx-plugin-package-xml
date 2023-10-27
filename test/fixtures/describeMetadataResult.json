@@ -8,9 +8,7 @@
       "xmlName": "InstalledPackage"
     },
     {
-      "childXmlNames": [
-        "CustomLabel"
-      ],
+      "childXmlNames": ["CustomLabel"],
       "directoryName": "labels",
       "inFolder": false,
       "metaFile": false,
@@ -309,9 +307,7 @@
       "xmlName": "Workflow"
     },
     {
-      "childXmlNames": [
-        "AssignmentRule"
-      ],
+      "childXmlNames": ["AssignmentRule"],
       "directoryName": "assignmentRules",
       "inFolder": false,
       "metaFile": false,
@@ -319,9 +315,7 @@
       "xmlName": "AssignmentRules"
     },
     {
-      "childXmlNames": [
-        "AutoResponseRule"
-      ],
+      "childXmlNames": ["AutoResponseRule"],
       "directoryName": "autoResponseRules",
       "inFolder": false,
       "metaFile": false,
@@ -329,9 +323,7 @@
       "xmlName": "AutoResponseRules"
     },
     {
-      "childXmlNames": [
-        "EscalationRule"
-      ],
+      "childXmlNames": ["EscalationRule"],
       "directoryName": "escalationRules",
       "inFolder": false,
       "metaFile": false,
@@ -514,9 +506,7 @@
       "xmlName": "RedirectWhitelistUrl"
     },
     {
-      "childXmlNames": [
-        "MatchingRule"
-      ],
+      "childXmlNames": ["MatchingRule"],
       "directoryName": "matchingRules",
       "inFolder": false,
       "metaFile": false,
@@ -594,11 +584,7 @@
       "xmlName": "ApexEmailNotifications"
     },
     {
-      "childXmlNames": [
-        "SharingOwnerRule",
-        "SharingCriteriaRule",
-        "SharingGuestRule"
-      ],
+      "childXmlNames": ["SharingOwnerRule", "SharingCriteriaRule", "SharingGuestRule"],
       "directoryName": "sharingRules",
       "inFolder": false,
       "metaFile": false,

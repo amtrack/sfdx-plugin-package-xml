@@ -12,21 +12,24 @@
     "@mdapi-issues/listmetadata-recordtype-personaccount": "2.0.2",
     "@mdapi-issues/listmetadata-standardvalueset": "2.0.3",
     "@mdapi-issues/listmetadata-standardvaluesettranslation-type": "2.0.2",
-    "@salesforce/command": "5.2.16",
+    "@salesforce/sf-plugins-core": "4.0.0",
     "get-stdin": "8.0.0",
     "lodash": "4.17.21",
-    "picomatch": "2.3.1",
-    "tslib": "2.4.0"
+    "picomatch": "2.3.1"
   },
   "devDependencies": {
-    "@types/chai": "4.3.5",
-    "@types/mocha": "10.0.1",
-    "chai": "4.3.7",
+    "@salesforce/cli-plugins-testkit": "4.4.10",
+    "@salesforce/dev-config": "4.1.0",
+    "@salesforce/prettier-config": "0.0.3",
+    "@types/chai": "4.3.9",
+    "@types/mocha": "10.0.3",
+    "chai": "4.3.10",
     "mocha": "10.2.0",
     "nyc": "15.1.0",
-    "oclif": "3.2.24",
+    "oclif": "4.0.3",
+    "prettier": "3.0.3",
     "ts-node": "10.9.1",
-    "typescript": "5.0.4"
+    "typescript": "5.2.2"
   },
   "engines": {
     "node": ">=14.16"
@@ -49,7 +52,8 @@
   "license": "MIT",
   "oclif": {
     "commands": "./lib/commands",
-    "bin": "sfdx",
+    "bin": "sf",
+    "topicSeparator": " ",
     "topics": {
       "package.xml": {
         "description": "explore metadata in an org and generate a package.xml manifest"
@@ -76,7 +80,7 @@
     "develop": "bash scripts/develop.sh",
     "prepack": "yarn build",
     "prepare": "yarn build",
-    "test": "nyc --reporter=lcov --reporter=text mocha --require ts-node/register \"test/**/*.test.ts\"",
-    "test:e2e": "mocha --require ts-node/register \"test/**/*.e2e-spec.ts\""
+    "test": "tsc -p test && nyc --reporter=lcov --reporter=text mocha --require ts-node/register \"test/**/*.test.ts\"",
+    "test:e2e": "tsc -p test && mocha --require ts-node/register \"test/**/*.e2e-spec.ts\""
   }
 }

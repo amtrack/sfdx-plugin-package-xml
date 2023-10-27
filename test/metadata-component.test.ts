@@ -1,19 +1,19 @@
-import { expect } from 'chai';
+import { expect } from "chai";
 import {
   parseMetadataComponentName,
   simplifyMetadataComponentPattern,
-  toMetadataComponentName
-} from '../src/metadata-component';
+  toMetadataComponentName,
+} from "../src/metadata-component";
 
-describe('metadata-component', () => {
-  describe('parseMetadataComponentName()', () => {
-    it('parses a metadata component name', () => {
-      expect(parseMetadataComponentName('CustomObject:Account')).to.deep.equal({
-        type: 'CustomObject',
-        fullName: 'Account'
+describe("metadata-component", () => {
+  describe("parseMetadataComponentName()", () => {
+    it("parses a metadata component name", () => {
+      expect(parseMetadataComponentName("CustomObject:Account")).to.deep.equal({
+        type: "CustomObject",
+        fullName: "Account",
       });
     });
-    const invalidSyntaxTests = ['', '::', 'CustomObject:', ':Account'];
+    const invalidSyntaxTests = ["", "::", "CustomObject:", ":Account"];
     for (const invalidSyntaxTest of invalidSyntaxTests) {
       it(`fails to parse "${invalidSyntaxTest}"`, () => {
         expect(() => {
@@ -22,46 +22,34 @@ describe('metadata-component', () => {
       });
     }
   });
-  describe('toMetadataComponentName()', () => {
-    it('formats a metadata component as string', () => {
+  describe("toMetadataComponentName()", () => {
+    it("formats a metadata component as string", () => {
       expect(
         toMetadataComponentName({
-          type: 'CustomObject',
-          fullName: 'Account'
-        })
-      ).to.deep.equal('CustomObject:Account');
+          type: "CustomObject",
+          fullName: "Account",
+        }),
+      ).to.deep.equal("CustomObject:Account");
     });
-    it('fails to format an invalid metadata component as string', () => {
+    it("fails to format an invalid metadata component as string", () => {
       expect(() => {
         toMetadataComponentName({
-          type: '',
-          fullName: 'Account'
+          type: "",
+          fullName: "Account",
         });
       }).to.throw(/is not a valid MetadataComponent/);
     });
   });
-  describe('simplifyMetadataComponentPattern()', () => {
-    it('returns the type for wildcard patterns', () => {
-      expect(simplifyMetadataComponentPattern('CustomObject:*')).to.deep.equal(
-        'CustomObject'
-      );
-      expect(simplifyMetadataComponentPattern('Report:**/*')).to.deep.equal(
-        'Report'
-      );
-      expect(simplifyMetadataComponentPattern('Report:*/*')).to.deep.equal(
-        'Report'
-      );
-      expect(simplifyMetadataComponentPattern('CustomField:*.*')).to.deep.equal(
-        'CustomField'
-      );
+  describe("simplifyMetadataComponentPattern()", () => {
+    it("returns the type for wildcard patterns", () => {
+      expect(simplifyMetadataComponentPattern("CustomObject:*")).to.deep.equal("CustomObject");
+      expect(simplifyMetadataComponentPattern("Report:**/*")).to.deep.equal("Report");
+      expect(simplifyMetadataComponentPattern("Report:*/*")).to.deep.equal("Report");
+      expect(simplifyMetadataComponentPattern("CustomField:*.*")).to.deep.equal("CustomField");
     });
-    it('returns the given pattern for complex patterns or component names', () => {
-      expect(
-        simplifyMetadataComponentPattern('CustomObject:Account')
-      ).to.deep.equal('CustomObject:Account');
-      expect(
-        simplifyMetadataComponentPattern('CustomField:*__*.*')
-      ).to.deep.equal('CustomField:*__*.*');
+    it("returns the given pattern for complex patterns or component names", () => {
+      expect(simplifyMetadataComponentPattern("CustomObject:Account")).to.deep.equal("CustomObject:Account");
+      expect(simplifyMetadataComponentPattern("CustomField:*__*.*")).to.deep.equal("CustomField:*__*.*");
     });
   });
 });

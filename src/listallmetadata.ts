@@ -1,46 +1,28 @@
-import type { OutputFlags } from "@oclif/core/lib/interfaces";
 import type { Connection } from "@salesforce/core";
 import type { FileProperties } from "jsforce/api/metadata";
 import { match } from "./match";
 import { toMetadataComponentName } from "./metadata-component";
-import ChildMetadataLister from "./metadata-lister/children";
-import FolderBasedMetadataLister from "./metadata-lister/folderbased";
-import RegularMetadataLister from "./metadata-lister/regular";
-import StandardValueSetMetadataLister from "./metadata-lister/standardvaluesets";
+import { ChildrenMetadata } from "./metadata-lister/children";
+import { FolderBasedMetadata } from "./metadata-lister/folderbased";
+import { RegularMetadata } from "./metadata-lister/regular";
+import { StandardValueSetLister } from "./metadata-lister/standardvaluesets";
 
 export async function listAllMetadata(
   conn: Connection,
-  flags: OutputFlags<any>,
-  allowPatterns?: Array<string>,
-  ignorePatterns?: Array<string>
-): Promise<Array<FileProperties>> {
+  enabledListerIds: string[],
+  allowPatterns?: string[],
+  ignorePatterns?: string[],
+): Promise<FileProperties[]> {
   const describeMetadataResult = await conn.metadata.describe();
-  const metadataListers = [
-    RegularMetadataLister,
-    FolderBasedMetadataLister,
-    StandardValueSetMetadataLister,
-    ChildMetadataLister,
-  ];
-  const result = [];
+  const metadataListers = [ChildrenMetadata, FolderBasedMetadata, RegularMetadata, StandardValueSetLister];
+  const result: FileProperties[] = [];
   for (const MetadataListerImplementation of metadataListers) {
     const listerId = MetadataListerImplementation.id;
-    const instance = new MetadataListerImplementation(
-      allowPatterns,
-      ignorePatterns
-    );
-    if (flags[listerId]) {
-      const fileProperties = await instance.run(
-        conn,
-        describeMetadataResult,
-        result
-      );
+    const instance = new MetadataListerImplementation(allowPatterns ?? [], ignorePatterns ?? []);
+    if (enabledListerIds.includes(listerId)) {
+      const fileProperties = await instance.run(conn, describeMetadataResult, result);
       // postfilter
-      const [matches] = match(
-        fileProperties,
-        allowPatterns,
-        toMetadataComponentName,
-        { ignore: ignorePatterns }
-      );
+      const [matches] = match(fileProperties, allowPatterns ?? [], toMetadataComponentName, { ignore: ignorePatterns });
       result.push(...matches);
     }
   }

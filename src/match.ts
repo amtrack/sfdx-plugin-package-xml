@@ -1,8 +1,6 @@
-import * as picomatch from 'picomatch';
+import * as picomatch from "picomatch";
 
-export interface ToStringFunction {
-  (item: any): string;
-}
+export type ToStringFunction = (item: any) => string;
 
 /**
  *
@@ -13,13 +11,13 @@ export interface ToStringFunction {
  * @returns Array with [matched, unmatched]
  */
 export function match(
-  collection: Array<any>,
-  patterns: Array<string>,
+  collection: any[],
+  patterns: string[],
   toString?: ToStringFunction,
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  picoMatchOptions?: any
-): Array<any> {
-  const unmatched = [];
+  picoMatchOptions?: any,
+): any[] {
+  const unmatched: any[] = [];
   const matched = collection.filter((item) => {
     const str = toString ? toString(item) : item;
     const isMatch = picomatch.isMatch(str, patterns, picoMatchOptions);

@@ -6,14 +6,14 @@
 >
 > Please submit issues with your feedback about errors, usability and feature requests.
 
-> sfdx plugin for generating a package.xml manifest
+> sfdx/sf plugin for generating a package.xml manifest
 
 [![Actions Status](https://github.com/amtrack/sfdx-plugin-package-xml/workflows/Test%20and%20Release/badge.svg)](https://github.com/amtrack/sfdx-plugin-package-xml/actions)
 
 ## Installation
 
 ```console
-sfdx plugins:install sfdx-plugin-package-xml@beta
+sf plugins install sfdx-plugin-package-xml@beta
 ```
 
 ## Usage
@@ -21,35 +21,35 @@ sfdx plugins:install sfdx-plugin-package-xml@beta
 Commands
 
 ```console
-sfdx force:mdapi:listallmetadata -h
-sfdx package.xml:generate -h
+sf force mdapi listallmetadata -h
+sf package.xml generate -h
 ```
 
-> :warning: Note: The first command is similar to the official (`force:mdapi:listmetadata`) command.
+> :warning: Note: The first command is similar to the official (`sf force mdapi listmetadata`) command.
 >
 > However our command lists Metadata for **ALL** Metadata Types.
 >
 > ```diff
-> -force:mdapi:listmetadata
-> +force:mdapi:listallmetadata
+> -force mdapi listmetadata
+> +force mdapi listallmetadata
 > ```
 
 ## Use Cases
 
-Retrieve all Metadata from an org named `acme-dev` (a.k.a "Metadata Backup", a.k.a. "sfdx force:org:pull")
+Retrieve all Metadata from an org named `acme-dev` (a.k.a "Metadata Backup", a.k.a. "sf force org pull")
 
 ```console
-sfdx force:mdapi:listallmetadata -f /tmp/fileproperties.json -u acme-dev
-sfdx package.xml:generate -j /tmp/fileproperties.json -f package.xml --apiversion 54.0
-sfdx force:source:retrieve -x package.xml -u acme-dev
+sf force mdapi listallmetadata -f /tmp/fileproperties.json -o acme-dev
+sfdx package.xml:generate -j /tmp/fileproperties.json -f package.xml --api-version 54.0
+sf force source retrieve -x package.xml -o acme-dev
 ```
 
 Explore Metadata in an org named `acme-dev`
 
 ```console
-sfdx force:mdapi:listallmetadata --names -u acme-dev
+sf force mdapi listallmetadata --names -o acme-dev
 # include child Metadata such as CustomField and filter for CustomFields on Account
-sfdx force:mdapi:listallmetadata --children --names -u acme-dev | grep "CustomField:Account."
+sf force mdapi listallmetadata --children --names -o acme-dev | grep "CustomField:Account."
 ```
 
 ## Concept and Implementation
@@ -93,9 +93,9 @@ For convenience you can also write `CustomField` instead of `CustomField:*`.
 
 They are used throughout this plugin, e.g. in the
 
-- output of `sfdx force:mdapi:listallmetadata --names`
-- component names (allow rules) in `sfdx force:mdapi:listallmetadata --metadata`
-- ignore rules in `sfdx force:mdapi:listallmetadata --ignore` and `sfdx package.xml:generate --ignore`
+- output of `sf force mdapi listallmetadata --names`
+- component names (allow rules) in `sf force mdapi listallmetadata --metadata`
+- ignore rules in `sf force mdapi listallmetadata --ignore` and `sfdx package.xml:generate --ignore`
 
 ### Filtering Metadata
 
@@ -112,15 +112,15 @@ Examples:
 1. To **only** list CustomObjects belonging to a Managed Package Unlocked Package:
 
 ```console
-sfdx force:mdapi:listallmetadata -m "CustomObject" --managed --unlocked --names
-sfdx force:mdapi:listallmetadata -m "CustomObject" --no-unmanaged --names
+sf force mdapi listallmetadata -m "CustomObject" --managed --unlocked --names
+sf force mdapi listallmetadata -m "CustomObject" --no-unmanaged --names
 ```
 
 2. To list CustomObjects **except** the ones belonging to a Managed Package OR Unlocked Package:
 
 ```console
-sfdx force:mdapi:listallmetadata -m "CustomObject" --unmanaged --names
-sfdx force:mdapi:listallmetadata -m "CustomObject" --no-managed --no-unlocked --names
+sf force mdapi listallmetadata -m "CustomObject" --unmanaged --names
+sf force mdapi listallmetadata -m "CustomObject" --no-managed --no-unlocked --names
 ```
 
 ### Package.xml

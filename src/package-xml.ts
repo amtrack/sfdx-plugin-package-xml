@@ -1,27 +1,22 @@
-import { fromPairs, groupBy } from 'lodash';
-import MetadataComponent, {
-  validateMetadataComponent
-} from './metadata-component';
-import { transformFolderToType } from './metadata-folder';
-import MetadataXml from './metadata-xml';
+import { fromPairs, groupBy } from "lodash";
+import { MetadataComponent, validateMetadataComponent } from "./metadata-component";
+import { transformFolderToType } from "./metadata-folder";
+import { MetadataXml } from "./metadata-xml";
 
 /**
  * Attempt to match the formatting of the package.xml manifest
  * for better compatibility with version control systems
  */
-export default class PackageXml {
-  private components: Array<MetadataComponent>;
-  private meta: Record<string, string>;
+export class PackageXml {
+  private components: MetadataComponent[];
+  private meta: Record<string, string> | undefined;
 
   /**
    *
    * @param components
    * @param meta additional properties like `version` and for managed packages `description`, `fullName`, `namespacePrefix`, `postInstallClass`
    */
-  constructor(
-    components: Array<MetadataComponent>,
-    meta?: Record<string, string>
-  ) {
+  constructor(components: MetadataComponent[], meta?: Record<string, string>) {
     this.components = components.map(validateMetadataComponent);
     this.meta = meta;
   }
@@ -30,15 +25,13 @@ export default class PackageXml {
   // within <types> the properties are sorted alphanumerically (<name> after <members>)
   public toJSON(): any {
     const components = transformFolders(this.components);
-    const groupedComponents = groupBy(components, 'type');
+    const groupedComponents: Map<string, MetadataComponent[]> = groupBy(components, "type");
     const types = Object.entries(groupedComponents)
       .map((entry) => {
         const [type, components] = entry;
         return {
-          members: components
-            .map((component) => component.fullName)
-            .sort(compareAlphanumeric),
-          name: type
+          members: components.map((component) => component.fullName).sort(compareAlphanumeric),
+          name: type,
         };
       })
       .sort((a, b) => {
@@ -46,18 +39,14 @@ export default class PackageXml {
       });
     const result = Object.assign({}, this.meta, { types });
     // in ES2019: Object.fromEntries
-    return fromPairs(
-      Object.entries(result).sort((a, b) =>
-        comparePackageXmlProperties(a[0], b[0])
-      )
-    );
+    return fromPairs(Object.entries(result).sort((a, b) => comparePackageXmlProperties(a[0], b[0])));
   }
 
   /**
    * @returns formatted XML string
    */
   public toString(): string {
-    const writer = new MetadataXml('Package', this.toJSON());
+    const writer = new MetadataXml("Package", this.toJSON());
     return writer.toString();
   }
 }
@@ -76,10 +65,10 @@ export function compareAlphanumeric(a: string, b: string): number {
  * always place Settings at the end, otherwise alphanumeric
  **/
 export function compareMetadataTypeNames(a: string, b: string): number {
-  if (a === 'Settings' && b !== 'Settings') {
+  if (a === "Settings" && b !== "Settings") {
     return 1;
   }
-  if (a !== 'Settings' && b === 'Settings') {
+  if (a !== "Settings" && b === "Settings") {
     return -1;
   }
   return compareAlphanumeric(a, b);
@@ -89,16 +78,16 @@ export function compareMetadataTypeNames(a: string, b: string): number {
  * fullName first, version at the end, otherwise alphanumeric
  **/
 export function comparePackageXmlProperties(a: string, b: string): number {
-  if (a === 'fullName' && b !== 'fullName') {
+  if (a === "fullName" && b !== "fullName") {
     return -1;
   }
-  if (a !== 'version' && b === 'version') {
+  if (a !== "version" && b === "version") {
     return -1;
   }
-  if (a !== 'fullName' && b === 'fullName') {
+  if (a !== "fullName" && b === "fullName") {
     return 1;
   }
-  if (a === 'version' && b !== 'version') {
+  if (a === "version" && b !== "version") {
     return 1;
   }
   return compareAlphanumeric(a, b);
@@ -109,9 +98,7 @@ export function comparePackageXmlProperties(a: string, b: string): number {
  *
  * see Declarative Metadata Sample Definition at https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_folder.htm
  */
-export function transformFolders(
-  components: Array<MetadataComponent>
-): Array<MetadataComponent> {
+export function transformFolders(components: MetadataComponent[]): MetadataComponent[] {
   return components.map((c) => {
     c.type = transformFolderToType(c.type);
     return c;

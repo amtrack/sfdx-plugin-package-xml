@@ -1,7 +1,7 @@
-import { cloneDeep } from 'lodash';
-import * as xml2js from 'xml2js';
+import { cloneDeep } from "lodash";
+import * as xml2js from "xml2js";
 
-export default class MetadataXml {
+export class MetadataXml {
   private _data: any;
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -9,7 +9,7 @@ export default class MetadataXml {
     this._data = {};
     this._data[type] = cloneDeep(data);
     this._data[type].$ = {
-      xmlns: 'http://soap.sforce.com/2006/04/metadata'
+      xmlns: "http://soap.sforce.com/2006/04/metadata",
     };
   }
 
@@ -19,17 +19,17 @@ export default class MetadataXml {
   public toString(): string {
     const builder = new xml2js.Builder({
       xmldec: {
-        version: '1.0',
-        encoding: 'UTF-8'
+        version: "1.0",
+        encoding: "UTF-8",
       },
       explicitRoot: false,
       renderOpts: {
         pretty: true,
-        indent: '    ', // 4 spaces
-        newline: '\n'
-      }
+        indent: "    ", // 4 spaces
+        newline: "\n",
+      },
     });
     const xml = builder.buildObject(this._data);
-    return xml + '\n';
+    return xml + "\n";
   }
 }
