@@ -15,7 +15,7 @@
     "@salesforce/sf-plugins-core": "4.0.0",
     "get-stdin": "8.0.0",
     "lodash": "4.17.21",
-    "picomatch": "2.3.1"
+    "picomatch": "3.0.1"
   },
   "devDependencies": {
     "@salesforce/cli-plugins-testkit": "4.4.10",
