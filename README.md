@@ -8,7 +8,7 @@
 
 > sfdx/sf plugin for generating a package.xml manifest
 
-[![Actions Status](https://github.com/amtrack/sfdx-plugin-package-xml/workflows/Test%20and%20Release/badge.svg)](https://github.com/amtrack/sfdx-plugin-package-xml/actions)
+[![Actions Status](https://github.com/amtrack/sfdx-plugin-package-xml/actions/workflows/default.yml/badge.svg?branch=beta)](https://github.com/amtrack/sfdx-plugin-package-xml/actions?query=branch:beta)
 
 ## Installation
 
