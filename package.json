@@ -12,7 +12,7 @@
     "@mdapi-issues/listmetadata-recordtype-personaccount": "2.0.2",
     "@mdapi-issues/listmetadata-standardvalueset": "2.0.3",
     "@mdapi-issues/listmetadata-standardvaluesettranslation-type": "2.0.2",
-    "@salesforce/sf-plugins-core": "4.0.0",
+    "@salesforce/sf-plugins-core": "9.1.1",
     "get-stdin": "8.0.0",
     "lodash": "4.17.21",
     "picomatch": "2.3.1"
