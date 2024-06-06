@@ -29,9 +29,25 @@ export async function listMetadataInChunks(conn: Connection, queries: ListMetada
   const CHUNK_SIZE = 3;
   const result: FileProperties[] = [];
   for (const chunkOfQueries of chunk(queries, CHUNK_SIZE)) {
-    const chunkOfMetadataComponents = await conn.metadata.list(chunkOfQueries);
-    if (chunkOfMetadataComponents) {
-      result.push(...ensureArray(chunkOfMetadataComponents));
+    try {
+      const chunkOfMetadataComponents = await conn.metadata.list(chunkOfQueries);
+      if (chunkOfMetadataComponents) {
+        result.push(...ensureArray(chunkOfMetadataComponents));
+      }
+    } catch (_) {
+      // fall back to 1 query to identify root cause
+      for (const query of chunkOfQueries) {
+        try {
+          const metadataComponents = await conn.metadata.list(query);
+          result.push(...ensureArray(metadataComponents));
+        } catch (e) {
+          throw new Error(
+            `Failed to list metadata components for ${query.type}${query.folder ? `:${query.folder}` : ""}: ${
+              e.message
+            }`,
+          );
+        }
+      }
     }
   }
   return result;
