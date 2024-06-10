@@ -84,8 +84,8 @@ export class PackageXmlGenerateCommand extends SfCommand<any> {
       throw new Error(`Could not parse inputfile at path ${flags.inputfile}`);
     }
     const meta = {};
-    if (flags.apiversion) {
-      meta["version"] = flags.apiversion;
+    if (flags["api-version"]) {
+      meta["version"] = flags["api-version"];
     }
     const ignorePatterns = [
       ...(await getNonEmptyLinesFromFiles(flags.ignorefile)),

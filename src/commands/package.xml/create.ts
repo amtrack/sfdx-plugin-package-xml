@@ -48,8 +48,8 @@ export class PackageXmlCreateCommand extends SfCommand<any> {
   public async run(): Promise<any> {
     const { flags } = await this.parse(PackageXmlCreateCommand);
     const meta = {};
-    if (flags.apiversion) {
-      meta["version"] = flags.apiversion;
+    if (flags["api-version"]) {
+      meta["version"] = flags["api-version"];
     }
     const metadataComponentNames =
       flags.metadata === "-"
