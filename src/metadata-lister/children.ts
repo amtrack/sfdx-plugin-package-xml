@@ -1,13 +1,12 @@
+import type { DescribeMetadataResult, FileProperties } from "@jsforce/jsforce-node/lib/api/metadata.js";
 import {
   RecordType,
   fixPersonAccountRecordTypes,
   queryPersonAccountRecordTypes,
 } from "@mdapi-issues/listmetadata-recordtype-personaccount";
 import { Connection } from "@salesforce/core";
-import type { DescribeMetadataResult, FileProperties } from "jsforce/api/metadata";
-import { flatten } from "lodash";
-import { listMetadataInChunks } from "../jsforce-utils";
-import { MetadataLister } from "../metadata-lister";
+import { listMetadataInChunks } from "../jsforce-utils.js";
+import { MetadataLister } from "../metadata-lister.js";
 
 export class ChildrenMetadata extends MetadataLister {
   public static id = "children";
@@ -21,7 +20,7 @@ export class ChildrenMetadata extends MetadataLister {
     const metadataTypesWithChildren = describeMetadataResult.metadataObjects.filter(
       (metadataType) => metadataType.childXmlNames,
     );
-    const childMetadataTypes = flatten(metadataTypesWithChildren.map((type) => type.childXmlNames));
+    const childMetadataTypes = metadataTypesWithChildren.flatMap((type) => type.childXmlNames);
     const childMetadataQueries = childMetadataTypes.map((childMetadataType) => {
       return { type: childMetadataType };
     });

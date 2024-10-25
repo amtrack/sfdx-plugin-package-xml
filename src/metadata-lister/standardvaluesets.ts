@@ -1,7 +1,7 @@
+import type { FileProperties } from "@jsforce/jsforce-node/lib/api/metadata.js";
 import { listStandardValueSets } from "@mdapi-issues/listmetadata-standardvalueset";
 import type { Connection } from "@salesforce/core";
-import type { FileProperties } from "jsforce/api/metadata";
-import { MetadataLister } from "../metadata-lister";
+import { MetadataLister } from "../metadata-lister.js";
 
 export class StandardValueSetLister extends MetadataLister {
   public static id = "standardvaluesets";

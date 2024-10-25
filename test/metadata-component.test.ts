@@ -3,7 +3,7 @@ import {
   parseMetadataComponentName,
   simplifyMetadataComponentPattern,
   toMetadataComponentName,
-} from "../src/metadata-component";
+} from "../src/metadata-component.js";
 
 describe("metadata-component", () => {
   describe("parseMetadataComponentName()", () => {

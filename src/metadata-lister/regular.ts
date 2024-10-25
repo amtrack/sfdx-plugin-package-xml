@@ -1,9 +1,9 @@
+import type { DescribeMetadataResult, FileProperties } from "@jsforce/jsforce-node/lib/api/metadata.js";
 import { addMissingNamespace } from "@mdapi-issues/listmetadata-installed-missing-namespaceprefix";
 import { fixNilType } from "@mdapi-issues/listmetadata-standardvaluesettranslation-type";
 import type { Connection } from "@salesforce/core";
-import type { DescribeMetadataResult, FileProperties } from "jsforce/api/metadata";
-import { listMetadataInChunks } from "../jsforce-utils";
-import { MetadataLister } from "../metadata-lister";
+import { listMetadataInChunks } from "../jsforce-utils.js";
+import { MetadataLister } from "../metadata-lister.js";
 
 export class RegularMetadata extends MetadataLister {
   public static id = "regular";

@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { join } from "path";
-import { getNonEmptyLinesFromFiles, parseCommaSeparatedValues, parseNewLineSeparatedValues } from "../src/cli";
+import { getNonEmptyLinesFromFiles, parseCommaSeparatedValues, parseNewLineSeparatedValues } from "../src/cli.js";
 
 describe("cli", () => {
   describe("parseCommaSeparatedValues()", () => {

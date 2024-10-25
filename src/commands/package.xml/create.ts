@@ -5,10 +5,10 @@ import {
   requiredOrgFlagWithDeprecations,
 } from "@salesforce/sf-plugins-core";
 import { promises as fs } from "fs";
-import { parseCommaSeparatedValues, parseNewLineSeparatedValues } from "../../cli";
-import { parseMetadataComponentName } from "../../metadata-component";
-import { PackageXml } from "../../package-xml";
-import getStdin = require("get-stdin");
+import { parseCommaSeparatedValues, parseNewLineSeparatedValues } from "../../cli.js";
+import { parseMetadataComponentName } from "../../metadata-component.js";
+import { PackageXml } from "../../package-xml.js";
+import getStdin from "get-stdin";
 
 export class PackageXmlCreateCommand extends SfCommand<any> {
   public static readonly summary = `create a package.xml manifest`;

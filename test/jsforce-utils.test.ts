@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { ensureArray } from "../src/jsforce-utils";
+import { ensureArray } from "../src/jsforce-utils.js";
 
 describe("jsforce-utils", () => {
   describe("ensureArray()", () => {

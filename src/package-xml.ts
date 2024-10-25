@@ -1,7 +1,6 @@
-import { fromPairs, groupBy } from "lodash";
-import { MetadataComponent, validateMetadataComponent } from "./metadata-component";
-import { transformFolderToType } from "./metadata-folder";
-import { MetadataXml } from "./metadata-xml";
+import { MetadataComponent, validateMetadataComponent } from "./metadata-component.js";
+import { transformFolderToType } from "./metadata-folder.js";
+import { MetadataXml } from "./metadata-xml.js";
 
 /**
  * Attempt to match the formatting of the package.xml manifest
@@ -25,7 +24,7 @@ export class PackageXml {
   // within <types> the properties are sorted alphanumerically (<name> after <members>)
   public toJSON(): any {
     const components = transformFolders(this.components);
-    const groupedComponents: Map<string, MetadataComponent[]> = groupBy(components, "type");
+    const groupedComponents: Map<string, MetadataComponent[]> = groupByKey(components, "type");
     const types = Object.entries(groupedComponents)
       .map((entry) => {
         const [type, components] = entry;
@@ -38,8 +37,7 @@ export class PackageXml {
         return compareMetadataTypeNames(a.name, b.name);
       });
     const result = Object.assign({}, this.meta, { types });
-    // in ES2019: Object.fromEntries
-    return fromPairs(Object.entries(result).sort((a, b) => comparePackageXmlProperties(a[0], b[0])));
+    return Object.fromEntries(Object.entries(result).sort((a, b) => comparePackageXmlProperties(a[0], b[0])));
   }
 
   /**
@@ -104,3 +102,5 @@ export function transformFolders(components: MetadataComponent[]): MetadataCompo
     return c;
   });
 }
+
+const groupByKey = (list, key) => list.reduce((hash, obj) => ({...hash, [obj[key]]:( hash[obj[key]] || [] ).concat(obj)}), {})
