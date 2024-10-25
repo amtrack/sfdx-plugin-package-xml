@@ -1,6 +1,6 @@
 import { readFile } from "fs/promises";
-import type { FileProperties } from "jsforce/api/metadata";
-import { toMetadataComponentName } from "./metadata-component";
+import type { FileProperties } from "@jsforce/jsforce-node/lib/api/metadata.js";
+import { toMetadataComponentName } from "./metadata-component.js";
 
 export function parseCommaSeparatedValues(commaSeparatedMetadataComponentNames?: string): string[] {
   if (!commaSeparatedMetadataComponentNames) {

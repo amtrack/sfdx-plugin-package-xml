@@ -1,16 +1,16 @@
+import { type FileProperties } from "@jsforce/jsforce-node/lib/api/metadata.js";
 import { Flags, SfCommand, requiredOrgFlagWithDeprecations } from "@salesforce/sf-plugins-core";
 import { promises as fs } from "fs";
-import { type FileProperties } from "jsforce/api/metadata";
+import getStdin from "get-stdin";
 import {
   formatFileProperties,
   getNonEmptyLinesFromFiles,
   parseCommaSeparatedValues,
   parseNewLineSeparatedValues,
-} from "../../../cli";
-import * as filters from "../../../filters";
-import { listAllMetadata } from "../../../listallmetadata";
-import { ensureMetadataComponentPattern } from "../../../metadata-component";
-import getStdin = require("get-stdin");
+} from "../../../cli.js";
+import * as filters from "../../../filters.js";
+import { listAllMetadata } from "../../../listallmetadata.js";
+import { ensureMetadataComponentPattern } from "../../../metadata-component.js";
 
 export class MdapiListAllMetadataCommand extends SfCommand<FileProperties[]> {
   public static readonly summary = `list all metadata components

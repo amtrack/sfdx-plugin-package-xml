@@ -1,4 +1,3 @@
-import { cloneDeep } from "lodash";
 import * as xml2js from "xml2js";
 
 export class MetadataXml {
@@ -7,7 +6,7 @@ export class MetadataXml {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   constructor(type: string, data: any) {
     this._data = {};
-    this._data[type] = cloneDeep(data);
+    this._data[type] = structuredClone(data);
     this._data[type].$ = {
       xmlns: "http://soap.sforce.com/2006/04/metadata",
     };

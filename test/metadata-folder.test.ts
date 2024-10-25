@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { transformFolderToType } from "../src/metadata-folder";
+import { transformFolderToType } from "../src/metadata-folder.js";
 
 describe("metadata-folder", () => {
   describe("transformFolderToType()", () => {

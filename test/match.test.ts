@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { match } from "../src/match";
+import { match } from "../src/match.js";
 
 describe("match", () => {
   describe("match()", () => {

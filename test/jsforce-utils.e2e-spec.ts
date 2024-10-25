@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { listMetadataInChunks } from "../src/jsforce-utils";
+import { listMetadataInChunks } from "../src/jsforce-utils.js";
 import { Org } from "@salesforce/core";
 
 describe("jsforce-utils", () => {

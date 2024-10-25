@@ -40,8 +40,8 @@ Retrieve all Metadata from an org named `acme-dev` (a.k.a "Metadata Backup", a.k
 
 ```console
 sf force mdapi listallmetadata -f /tmp/fileproperties.json -o acme-dev
-sfdx package.xml:generate -j /tmp/fileproperties.json -f package.xml --api-version 54.0
-sf force source retrieve -x package.xml -o acme-dev
+sf package.xml generate -j /tmp/fileproperties.json -f package.xml --api-version 54.0
+sf project retrieve start --manifest package.xml -o acme-dev
 ```
 
 Explore Metadata in an org named `acme-dev`
@@ -95,7 +95,7 @@ They are used throughout this plugin, e.g. in the
 
 - output of `sf force mdapi listallmetadata --names`
 - component names (allow rules) in `sf force mdapi listallmetadata --metadata`
-- ignore rules in `sf force mdapi listallmetadata --ignore` and `sfdx package.xml:generate --ignore`
+- ignore rules in `sf force mdapi listallmetadata --ignore` and `sf package.xml generate --ignore`
 
 ### Filtering Metadata
 

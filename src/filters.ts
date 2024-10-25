@@ -1,4 +1,4 @@
-import { FileProperties } from "jsforce/api/metadata";
+import { FileProperties } from "@jsforce/jsforce-node/lib/api/metadata.js";
 
 // https://help.salesforce.com/s/articleView?id=sf.packaging_component_attributes.htm&type=5
 // Metadata Types which don't have an entry in the "SUBSCRIBER AND DEVELOPER EDITABLE" column

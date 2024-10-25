@@ -1,7 +1,7 @@
 import { Org } from "@salesforce/core";
 import { expect } from "chai";
-import { toMetadataComponentName } from "../src/metadata-component";
-import { FolderBasedMetadata } from "../src/metadata-lister/folderbased";
+import { toMetadataComponentName } from "../src/metadata-component.js";
+import { FolderBasedMetadata } from "../src/metadata-lister/folderbased.js";
 
 const expected = [
   "EmailFolder:unfiled$public",

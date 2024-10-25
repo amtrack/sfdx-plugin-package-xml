@@ -3,6 +3,6 @@
 set -eo pipefail
 
 sf org create scratch -f config/project-scratch-def.json \
-  -a sfdx-plugin-package-xml-dev \
-  -d
+  --alias sfdx-plugin-package-xml-dev \
+  --set-default
 sf project deploy start

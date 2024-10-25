@@ -1,14 +1,13 @@
 import {
   Flags,
   SfCommand,
-  requiredOrgFlagWithDeprecations,
-  orgApiVersionFlagWithDeprecations,
+  orgApiVersionFlagWithDeprecations
 } from "@salesforce/sf-plugins-core";
 import { promises as fs } from "fs";
-import { getNonEmptyLinesFromFiles, parseCommaSeparatedValues } from "../../cli";
-import { match } from "../../match";
-import { toMetadataComponentName } from "../../metadata-component";
-import { PackageXml } from "../../package-xml";
+import { getNonEmptyLinesFromFiles, parseCommaSeparatedValues } from "../../cli.js";
+import { match } from "../../match.js";
+import { toMetadataComponentName } from "../../metadata-component.js";
+import { PackageXml } from "../../package-xml.js";
 
 export class PackageXmlGenerateCommand extends SfCommand<any> {
   public static readonly summary = `generate a package.xml manifest based on the force:mdapi:listallmetadata output`;
@@ -48,7 +47,6 @@ export class PackageXmlGenerateCommand extends SfCommand<any> {
   ];
 
   public static readonly flags = {
-    "target-org": requiredOrgFlagWithDeprecations,
     inputfile: Flags.file({
       char: "j",
       summary: "path to a file with fileproperties in JSON Array format",

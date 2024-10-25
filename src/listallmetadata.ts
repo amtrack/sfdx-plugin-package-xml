@@ -1,11 +1,11 @@
+import type { FileProperties } from "@jsforce/jsforce-node/lib/api/metadata.js";
 import type { Connection } from "@salesforce/core";
-import type { FileProperties } from "jsforce/api/metadata";
-import { match } from "./match";
-import { toMetadataComponentName } from "./metadata-component";
-import { ChildrenMetadata } from "./metadata-lister/children";
-import { FolderBasedMetadata } from "./metadata-lister/folderbased";
-import { RegularMetadata } from "./metadata-lister/regular";
-import { StandardValueSetLister } from "./metadata-lister/standardvaluesets";
+import { match } from "./match.js";
+import { toMetadataComponentName } from "./metadata-component.js";
+import { ChildrenMetadata } from "./metadata-lister/children.js";
+import { FolderBasedMetadata } from "./metadata-lister/folderbased.js";
+import { RegularMetadata } from "./metadata-lister/regular.js";
+import { StandardValueSetLister } from "./metadata-lister/standardvaluesets.js";
 
 export async function listAllMetadata(
   conn: Connection,

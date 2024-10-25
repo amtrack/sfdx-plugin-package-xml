@@ -1,8 +1,8 @@
+import type { FileProperties } from "@jsforce/jsforce-node/lib/api/metadata.js";
 import type { Connection } from "@salesforce/core";
-import type { FileProperties } from "jsforce/api/metadata";
-import { listMetadataInChunks } from "../jsforce-utils";
-import { toMetadataComponentName } from "../metadata-component";
-import { MetadataLister } from "../metadata-lister";
+import { listMetadataInChunks } from "../jsforce-utils.js";
+import { toMetadataComponentName } from "../metadata-component.js";
+import { MetadataLister } from "../metadata-lister.js";
 
 export const FOLDER_BASED_METADATA_MAP = {
   EmailFolder: "EmailTemplate",

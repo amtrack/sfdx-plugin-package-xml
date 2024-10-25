@@ -1,7 +1,5 @@
+import type { FileProperties, ListMetadataQuery } from "@jsforce/jsforce-node/lib/api/metadata.js";
 import type { Connection } from "@salesforce/core";
-import type { FileProperties, ListMetadataQuery } from "jsforce/api/metadata";
-
-import { chunk } from "lodash";
 
 /**
  * workaround as the Metadata API (converted from XML) returns an object instead of an array of length 1
@@ -52,3 +50,11 @@ export async function listMetadataInChunks(conn: Connection, queries: ListMetada
   }
   return result;
 }
+
+const chunk = (input, size) => {
+  return input.reduce((arr, item, idx) => {
+    return idx % size === 0
+      ? [...arr, [item]]
+      : [...arr.slice(0, -1), [...arr.slice(-1)[0], item]];
+  }, []);
+};

@@ -1,7 +1,7 @@
-import type { DescribeMetadataResult, FileProperties } from "jsforce/api/metadata";
+import type { DescribeMetadataResult, FileProperties } from "@jsforce/jsforce-node/lib/api/metadata.js";
 import type { Connection } from "@salesforce/core";
-import { match, ToStringFunction } from "./match";
-import { parseMetadataComponentName, simplifyMetadataComponentPattern } from "./metadata-component";
+import { match, ToStringFunction } from "./match.js";
+import { parseMetadataComponentName, simplifyMetadataComponentPattern } from "./metadata-component.js";
 
 export interface IMetadataLister {
   id: string;

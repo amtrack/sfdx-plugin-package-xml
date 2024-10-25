@@ -1,4 +1,4 @@
-import * as picomatch from "picomatch";
+import picomatch from "picomatch";
 
 export type ToStringFunction = (item: any) => string;
 
