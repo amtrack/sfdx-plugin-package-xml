@@ -18,7 +18,7 @@
     "picomatch": "4.0.2"
   },
   "devDependencies": {
-    "@salesforce/dev-scripts": "10.2.10",
+    "@salesforce/dev-scripts": "10.2.11",
     "oclif": "4.15.24"
   },
   "files": [
