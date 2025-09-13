@@ -9,9 +9,10 @@ on:
     branches:
       - main
       - beta
+  workflow_dispatch:
 
 jobs:
-  default:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -36,6 +37,22 @@ jobs:
         if: always()
         run: |
           sf org delete scratch --no-prompt
+  release:
+    needs: test
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .node-version
+      - name: Install dependencies
+        run: npm ci
       - name: Release package
         run: npx semantic-release
         env:

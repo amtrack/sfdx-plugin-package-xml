@@ -1,32 +1,7 @@
 {
   "name": "sfdx-plugin-package-xml",
-  "description": "explore metadata in an org and generate a package.xml manifest",
   "version": "0.0.0-development",
-  "author": "Matthias Rolke @amtrack",
-  "bugs": "https://github.com/amtrack/sfdx-plugin-package-xml/issues",
-  "type": "module",
-  "bin": {
-    "sfdx-plugin-package-xml": "bin/run"
-  },
-  "dependencies": {
-    "@mdapi-issues/listmetadata-installed-missing-namespaceprefix": "3.0.0",
-    "@mdapi-issues/listmetadata-recordtype-personaccount": "3.0.0",
-    "@mdapi-issues/listmetadata-standardvalueset": "3.1.0",
-    "@mdapi-issues/listmetadata-standardvaluesettranslation-type": "3.0.0",
-    "@salesforce/sf-plugins-core": "12.2.2",
-    "get-stdin": "9.0.0",
-    "picomatch": "4.0.2"
-  },
-  "devDependencies": {
-    "@salesforce/dev-scripts": "11.0.2",
-    "oclif": "4.18.4"
-  },
-  "files": [
-    "/bin",
-    "/lib",
-    "/oclif.manifest.json"
-  ],
-  "homepage": "https://github.com/amtrack/sfdx-plugin-package-xml",
+  "description": "explore metadata in an org and generate a package.xml manifest",
   "keywords": [
     "sfdx",
     "sfdx-plugin",
@@ -37,20 +12,25 @@
     "file properties",
     "salesforce"
   ],
+  "repository": "amtrack/sfdx-plugin-package-xml",
   "license": "MIT",
-  "oclif": {
-    "commands": "./lib/commands",
-    "bin": "sf",
-    "topicSeparator": " ",
-    "topics": {
-      "package.xml": {
-        "description": "explore metadata in an org and generate a package.xml manifest"
-      }
-    },
-    "additionalHelpFlags": [
-      "-h"
-    ],
-    "repositoryPrefix": "<%- repo %>/blob/main/<%- commandPath %>"
+  "author": "Matthias Rolke @amtrack",
+  "type": "module",
+  "bin": {
+    "sfdx-plugin-package-xml": "bin/run"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/oclif.manifest.json"
+  ],
+  "scripts": {
+    "build": "rm -rf lib && tsc -p . && oclif manifest",
+    "develop": "bash scripts/develop.sh",
+    "prepack": "npm run build",
+    "prepare": "npm run build",
+    "test": "tsc -p test && nyc --reporter=lcov --reporter=text mocha \"test/**/*.test.ts\"",
+    "test:e2e": "tsc -p test && mocha \"test/**/*.e2e-spec.ts\""
   },
   "release": {
     "branches": [
@@ -66,13 +46,34 @@
     "loader": "ts-node/esm",
     "no-warnings": "ExperimentalWarning"
   },
-  "repository": "amtrack/sfdx-plugin-package-xml",
-  "scripts": {
-    "build": "rm -rf lib && tsc -p . && oclif manifest",
-    "develop": "bash scripts/develop.sh",
-    "prepack": "npm run build",
-    "prepare": "npm run build",
-    "test": "tsc -p test && nyc --reporter=lcov --reporter=text mocha \"test/**/*.test.ts\"",
-    "test:e2e": "tsc -p test && mocha \"test/**/*.e2e-spec.ts\""
+  "oclif": {
+    "additionalHelpFlags": [
+      "-h"
+    ],
+    "bin": "sf",
+    "commands": "./lib/commands",
+    "repositoryPrefix": "<%- repo %>/blob/main/<%- commandPath %>",
+    "topicSeparator": " ",
+    "topics": {
+      "package.xml": {
+        "description": "explore metadata in an org and generate a package.xml manifest"
+      }
+    }
+  },
+  "dependencies": {
+    "@mdapi-issues/listmetadata-installed-missing-namespaceprefix": "3.0.0",
+    "@mdapi-issues/listmetadata-recordtype-personaccount": "3.0.0",
+    "@mdapi-issues/listmetadata-standardvalueset": "3.1.0",
+    "@mdapi-issues/listmetadata-standardvaluesettranslation-type": "3.0.0",
+    "@salesforce/sf-plugins-core": "12.2.2",
+    "get-stdin": "9.0.0",
+    "picomatch": "4.0.2"
+  },
+  "devDependencies": {
+    "@salesforce/dev-scripts": "11.0.2",
+    "oclif": "4.18.4"
+  },
+  "publishConfig": {
+    "provenance": true
   }
 }
