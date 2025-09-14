@@ -71,7 +71,7 @@
   },
   "devDependencies": {
     "@salesforce/dev-scripts": "11.0.4",
-    "oclif": "4.18.4"
+    "oclif": "4.22.20"
   },
   "publishConfig": {
     "provenance": true
