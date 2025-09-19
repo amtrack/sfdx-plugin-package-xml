@@ -32,16 +32,6 @@
     "test": "tsc -p test && nyc --reporter=lcov --reporter=text mocha \"test/**/*.test.ts\"",
     "test:e2e": "tsc -p test && mocha \"test/**/*.e2e-spec.ts\""
   },
-  "release": {
-    "branches": [
-      "main",
-      {
-        "name": "beta",
-        "channel": "beta",
-        "prerelease": "beta"
-      }
-    ]
-  },
   "mocha": {
     "loader": "ts-node/esm",
     "no-warnings": "ExperimentalWarning"

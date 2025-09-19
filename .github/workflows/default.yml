@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - main
-      - beta
   pull_request:
     branches:
       - main
-      - beta
   workflow_dispatch:
 
 jobs:
@@ -41,7 +39,7 @@ jobs:
           sf org delete scratch --no-prompt
   release:
     needs: test
-    if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta' }}
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write

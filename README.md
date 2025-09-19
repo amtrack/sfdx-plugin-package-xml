@@ -2,18 +2,14 @@
 
 > explore metadata in an org and generate a package.xml manifest
 
-> DISCLAIMER: This is a **beta** version with only a few features.
->
-> Please submit issues with your feedback about errors, usability and feature requests.
-
 > sfdx/sf plugin for generating a package.xml manifest
 
-[![Actions Status](https://github.com/amtrack/sfdx-plugin-package-xml/actions/workflows/default.yml/badge.svg?branch=beta)](https://github.com/amtrack/sfdx-plugin-package-xml/actions?query=branch:beta)
+[![Actions Status](https://github.com/amtrack/sfdx-plugin-package-xml/actions/workflows/default.yml/badge.svg?branch=main)](https://github.com/amtrack/sfdx-plugin-package-xml/actions?query=branch:main)
 
 ## Installation
 
 ```console
-sf plugins install sfdx-plugin-package-xml@beta
+sf plugins install sfdx-plugin-package-xml
 ```
 
 ## Usage
