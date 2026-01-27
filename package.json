@@ -12,7 +12,10 @@
     "file properties",
     "salesforce"
   ],
-  "repository": "amtrack/sfdx-plugin-package-xml",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amtrack/sfdx-plugin-package-xml.git"
+  },
   "license": "MIT",
   "author": "Matthias Rolke @amtrack",
   "type": "module",
