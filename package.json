@@ -60,7 +60,7 @@
     "@mdapi-issues/listmetadata-standardvaluesettranslation-type": "3.0.0",
     "@salesforce/sf-plugins-core": "12.2.4",
     "get-stdin": "9.0.0",
-    "picomatch": "4.0.3"
+    "picomatch": "4.0.5"
   },
   "devDependencies": {
     "@salesforce/dev-scripts": "13.0.2",
