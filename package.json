@@ -64,6 +64,6 @@
   },
   "devDependencies": {
     "@salesforce/dev-scripts": "13.0.2",
-    "oclif": "4.23.30"
+    "oclif": "4.24.0"
   }
 }
